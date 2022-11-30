@@ -3,12 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="/js/swfobject.js"></script>
-    <script type="text/javascript" src="/Slide/jquery-1.6.4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/default.css" />
-    <link rel="stylesheet" type="text/css" href="/menu/ddlevelsfiles/ddlevelsmenu-base.css" />
-    <link rel="stylesheet" type="text/css" href="/menu/ddlevelsfiles/ddlevelsmenu-topbar.css" />
-    <script type="text/javascript" src="/menu/ddlevelsfiles/ddlevelsmenu.js"></script>
+    <script type="text/javascript" src="js/swfobject.js"></script>
+    <script type="text/javascript" src="Slide/jquery-1.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="menu/ddlevelsfiles/ddlevelsmenu-base.css" />
+    <link rel="stylesheet" type="text/css" href="menu/ddlevelsfiles/ddlevelsmenu-topbar.css" />
+    <script type="text/javascript" src="menu/ddlevelsfiles/ddlevelsmenu.js"></script>
     <meta name="robots" content="INDEX,FOLLOW,ALL" /><meta name="language" content="Vietnamese, VIETNAM, vietnam" /><meta name="author" content="www.thietkephanmem.com" /><meta name="copyright" content="Copyright (C) 2006-2010 thietkephanmem.com" /><meta name="revisit-after" content="1 day" /><meta name="document-rating" content="General" /><meta name="document-distribution" content="Global" /><meta name="distribution" content="Global" /><meta name="area" content="Network Solution" /><meta name="placename" content="vietnam" /><meta name="resource-type" content="Document" /><link rel="shortcut icon" href="../favicon.ico" /><meta name="Googlebot" content="index" /><meta http-equiv="imagetoolbar" content="no" /><meta http-equiv="Page-Exit" content="progid:DXImageTransform.Microsoft.Fade(duration=.2)" /><meta name="classification" content="www.thietkephanmem.com, Vietnam" />
 
 
