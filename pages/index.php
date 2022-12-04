@@ -112,7 +112,7 @@
                         <tr>
                             <td class="head-bg">
             <span id="ctl00_MenuVi1_LabelHead">
-<a href="/"><img src="Images/3bannerhnue.jpg" border="0" width="996" height="150" ></a></span>
+<a href="/"><img src="../Images/3bannerhnue.jpg" border="0" width="996" height="150" ></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -177,7 +177,7 @@
                                             <input name="ctl00$MenuVi1$TextBoxSearch" type="text" value="Từ khóa..." id="ctl00_MenuVi1_TextBoxSearch" class="text-search" onfocus="if (this.value==&#39;Từ khóa...&#39;) this.value=&#39;&#39;;" onblur="if (this.value==&#39;&#39;) this.value=&#39;Từ khóa...&#39;;" />
                                         </td>
                                         <td style="width: 47px;">
-                                            <input type="image" name="ctl00$MenuVi1$ImageButtonSearch" id="ctl00_MenuVi1_ImageButtonSearch" src="Images/index_13.jpg" style="height:31px;width:47px;border-width:0px;" />
+                                            <input type="image" name="ctl00$MenuVi1$ImageButtonSearch" id="ctl00_MenuVi1_ImageButtonSearch" src="../Images/index_13.jpg" style="height:31px;width:47px;border-width:0px;" />
                                         </td>
 
                                     </tr>
@@ -231,7 +231,7 @@
                                                         </td>
                                                     </tr><tr>
                                                         <td>
-                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/van-ban-huong-dan-thuc-hien-dieu-chinh-noi-dung-day-hoc-hoc-ky-ii-nam-hoc-2019-2020_v584.aspx"><img src="Images/Thumb_24.jpg" class="img-news" alt="Văn bản hướng dẫn thực hiện điều chỉnh nội dung dạy học học kỳ II năm học 2019-2020" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/van-ban-huong-dan-thuc-hien-dieu-chinh-noi-dung-day-hoc-hoc-ky-ii-nam-hoc-2019-2020_v584.aspx" ><h2>Văn bản hướng dẫn thực hiện điều chỉnh nội dung dạy học học kỳ II năm học 2019-2020</h2></a></div><div class="Body-News">&nbsp;
+                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/van-ban-huong-dan-thuc-hien-dieu-chinh-noi-dung-day-hoc-hoc-ky-ii-nam-hoc-2019-2020_v584.aspx"><img src="../Images/Thumb_24.jpg" class="img-news" alt="Văn bản hướng dẫn thực hiện điều chỉnh nội dung dạy học học kỳ II năm học 2019-2020" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/van-ban-huong-dan-thuc-hien-dieu-chinh-noi-dung-day-hoc-hoc-ky-ii-nam-hoc-2019-2020_v584.aspx" ><h2>Văn bản hướng dẫn thực hiện điều chỉnh nội dung dạy học học kỳ II năm học 2019-2020</h2></a></div><div class="Body-News">&nbsp;
 
                                                                         Nội dung điều chỉnh từng m&ocirc;n học được Bộ GD&amp;ĐT đưa ra ở đường dẫn sau
                                                                         Link:&nbsp;https://drive.google.com/drive/folders/1JA137ERiOK1H4NszGRMUgJ8B0GMgnbfT
@@ -242,7 +242,7 @@
                                                         </td>
                                                     </tr><tr>
                                                         <td>
-                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/thay-doi-lich-thi-hoc-bong-astar-2019_v577.aspx"><img src="Images/Thumb_Thumb_est_thong-tin-hoc-bong-astar-2019.jpg" class="img-news" alt="Thay đổi lịch thi học bổng Astar 2019" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/thay-doi-lich-thi-hoc-bong-astar-2019_v577.aspx" ><h2>Thay đổi lịch thi học bổng Astar 2019</h2></a></div><div class="Body-News">&nbsp;Lịch thi học bổng&nbsp;Astar c&oacute;&nbsp;điều chỉnh, c&aacute;c em học sinh&nbsp;đăng k&iacute; thi lưu&nbsp;&yacute;.
+                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/thay-doi-lich-thi-hoc-bong-astar-2019_v577.aspx"><img src="../Images/Thumb_Thumb_est_thong-tin-hoc-bong-astar-2019.jpg" class="img-news" alt="Thay đổi lịch thi học bổng Astar 2019" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/thay-doi-lich-thi-hoc-bong-astar-2019_v577.aspx" ><h2>Thay đổi lịch thi học bổng Astar 2019</h2></a></div><div class="Body-News">&nbsp;Lịch thi học bổng&nbsp;Astar c&oacute;&nbsp;điều chỉnh, c&aacute;c em học sinh&nbsp;đăng k&iacute; thi lưu&nbsp;&yacute;.
 
 
 
@@ -262,13 +262,13 @@
                                                         </td>
                                                     </tr><tr>
                                                         <td>
-                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/lich-kham-suc-khoe-cho-hoc-sinh-khoi-10-k53_v575.aspx"><img src="Images/Thumb_pngtree-vector-health-icon-png-image_319656.jpg" class="img-news" alt="Lịch khám sức khỏe cho học sinh khối 10 K53" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/lich-kham-suc-khoe-cho-hoc-sinh-khoi-10-k53_v575.aspx" ><h2>Lịch khám sức khỏe cho học sinh khối 10 K53</h2></a></div><div class="Body-News">&nbsp;Được sự đồng &yacute; của Ban gi&aacute;m hiệu trường ĐH Sư phạm H&agrave; Nội, Trường Trung học phổ th&ocirc;ng Chuy&ecirc;n sẽ tổ chức cho học sinh khối 10 (gồm 15 lớp) kh&aacute;m sức khỏe trong 3 ng&agrave;y 12,13,14/8/2019. Lịch cụ thể như sau:
+                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/lich-kham-suc-khoe-cho-hoc-sinh-khoi-10-k53_v575.aspx"><img src="../Images/Thumb_pngtree-vector-health-icon-png-image_319656.jpg" class="img-news" alt="Lịch khám sức khỏe cho học sinh khối 10 K53" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/lich-kham-suc-khoe-cho-hoc-sinh-khoi-10-k53_v575.aspx" ><h2>Lịch khám sức khỏe cho học sinh khối 10 K53</h2></a></div><div class="Body-News">&nbsp;Được sự đồng &yacute; của Ban gi&aacute;m hiệu trường ĐH Sư phạm H&agrave; Nội, Trường Trung học phổ th&ocirc;ng Chuy&ecirc;n sẽ tổ chức cho học sinh khối 10 (gồm 15 lớp) kh&aacute;m sức khỏe trong 3 ng&agrave;y 12,13,14/8/2019. Lịch cụ thể như sau:
                                                                         - S&aacute;ng thứ hai (12/08/2019) từ ...</div></div></div>
 
                                                         </td>
                                                     </tr><tr>
                                                         <td>
-                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/thong-bao-mo-lop-8-va-9-tao-nguon-nam-2019_v574.aspx"><img src="Images/Thumb_THONG%20BAO.png" class="img-news" alt="THÔNG BÁO MỞ LỚP 8 VÀ 9 TẠO NGUỒN NĂM 2019" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/thong-bao-mo-lop-8-va-9-tao-nguon-nam-2019_v574.aspx" ><h2>THÔNG BÁO MỞ LỚP 8 VÀ 9 TẠO NGUỒN NĂM 2019</h2></a></div><div class="Body-News">&nbsp;&nbsp;
+                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/thong-bao-mo-lop-8-va-9-tao-nguon-nam-2019_v574.aspx"><img src="../Images/Thumb_THONG%20BAO.png" class="img-news" alt="THÔNG BÁO MỞ LỚP 8 VÀ 9 TẠO NGUỒN NĂM 2019" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/thong-bao-mo-lop-8-va-9-tao-nguon-nam-2019_v574.aspx" ><h2>THÔNG BÁO MỞ LỚP 8 VÀ 9 TẠO NGUỒN NĂM 2019</h2></a></div><div class="Body-News">&nbsp;&nbsp;
                                                                         Bắt đầu từ chủ nhật ng&agrave;y 18/8/2019, trường THPT Chuy&ecirc;n Đại học Sư phạm sẽ mở c&aacute;c lớp 8 v&agrave; 9 tạo nguồn. C&aacute;c lớp sẽ học v&agrave;o c&aacute;c ng&agrave;y&nbsp;chủ nhật&nbsp;h&agrave;ng tuần, cụ thể như sau:
                                                                         &nbsp;
 
@@ -279,12 +279,12 @@
                                                         </td>
                                                     </tr><tr>
                                                         <td>
-                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/buoi-noi-chuyen-ve-ramsey-theory-cua-pgsts-le-thai-hoang-cuu-hoc-sinh-chuyen-su-pham-huy-chuong-vang-imo-1999-voi-hoc-sinh-chuyen-toan_v511.aspx"><img src="Images/Thumb_Thai-Hoang-Le-Photo.jpg" class="img-news" alt="Buổi nói chuyện về Ramsey Theory của PGS.TS. Lê Thái Hoàng, cựu học sinh Chuyên Sư phạm, Huy chương vàng IMO 1999, với học sinh chuyên Toán" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/buoi-noi-chuyen-ve-ramsey-theory-cua-pgsts-le-thai-hoang-cuu-hoc-sinh-chuyen-su-pham-huy-chuong-vang-imo-1999-voi-hoc-sinh-chuyen-toan_v511.aspx" ><h2>Buổi nói chuyện về Ramsey Theory của PGS.TS. Lê Thái Hoàng, cựu học sinh Chuyên Sư phạm, Huy chương vàng IMO 1999, với học sinh chuyên Toán</h2></a></div><div class="Body-News">K&iacute;nh mời c&aacute;c thầy c&ocirc;, c&aacute;c em học sinh chuy&ecirc;n To&aacute;n v&agrave; c&aacute;c em học sinh quan t&acirc;m tới dự buổi n&oacute;i chuyện v&agrave; giao lưu giữa PGS. TS. L&ecirc; Th&aacute;i Ho&agrave;ng, cựu học sinh Chuy&ecirc;n Sư phạm, Huy chương v&agrave;ng IMO năm 1999 ...</div></div></div>
+                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/buoi-noi-chuyen-ve-ramsey-theory-cua-pgsts-le-thai-hoang-cuu-hoc-sinh-chuyen-su-pham-huy-chuong-vang-imo-1999-voi-hoc-sinh-chuyen-toan_v511.aspx"><img src="../Images/Thumb_Thai-Hoang-Le-Photo.jpg" class="img-news" alt="Buổi nói chuyện về Ramsey Theory của PGS.TS. Lê Thái Hoàng, cựu học sinh Chuyên Sư phạm, Huy chương vàng IMO 1999, với học sinh chuyên Toán" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/buoi-noi-chuyen-ve-ramsey-theory-cua-pgsts-le-thai-hoang-cuu-hoc-sinh-chuyen-su-pham-huy-chuong-vang-imo-1999-voi-hoc-sinh-chuyen-toan_v511.aspx" ><h2>Buổi nói chuyện về Ramsey Theory của PGS.TS. Lê Thái Hoàng, cựu học sinh Chuyên Sư phạm, Huy chương vàng IMO 1999, với học sinh chuyên Toán</h2></a></div><div class="Body-News">K&iacute;nh mời c&aacute;c thầy c&ocirc;, c&aacute;c em học sinh chuy&ecirc;n To&aacute;n v&agrave; c&aacute;c em học sinh quan t&acirc;m tới dự buổi n&oacute;i chuyện v&agrave; giao lưu giữa PGS. TS. L&ecirc; Th&aacute;i Ho&agrave;ng, cựu học sinh Chuy&ecirc;n Sư phạm, Huy chương v&agrave;ng IMO năm 1999 ...</div></div></div>
 
                                                         </td>
                                                     </tr><tr>
                                                         <td>
-                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/danh-sach-hoc-sinh-csp-nhan-hoc-bong-odon-valet-2017_v496.aspx"><img src="Images/Thumb_Odon%20valet.jpg" class="img-news" alt="Danh sách học sinh CSP nhận học bổng ODON VALET 2017" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/danh-sach-hoc-sinh-csp-nhan-hoc-bong-odon-valet-2017_v496.aspx" ><h2>Danh sách học sinh CSP nhận học bổng ODON VALET 2017</h2></a></div><div class="Body-News"></div></div></div>
+                                                            <div style="width:100%; height:auto;padding:0;"><div style="width:140px;float:left;"><a href="/danh-sach-hoc-sinh-csp-nhan-hoc-bong-odon-valet-2017_v496.aspx"><img src="../Images/Thumb_Odon%20valet.jpg" class="img-news" alt="Danh sách học sinh CSP nhận học bổng ODON VALET 2017" /></a></div><div style="width:370px;float:right;"><div class="Head-News"><a href="/danh-sach-hoc-sinh-csp-nhan-hoc-bong-odon-valet-2017_v496.aspx" ><h2>Danh sách học sinh CSP nhận học bổng ODON VALET 2017</h2></a></div><div class="Body-News"></div></div></div>
 
                                                         </td>
                                                     </tr><tr>
@@ -357,7 +357,7 @@
                                                         <div id="ctl00_ContentPlaceHolder1_UpdateProgress1" style="display:none;">
 
                                                             <center>
-                                                                <img src="Images/indicator.gif" alt="Đang xử lý" />
+                                                                <img src="../Images/indicator.gif" alt="Đang xử lý" />
                                                             </center>
 
                                                         </div>
@@ -880,7 +880,7 @@
                     <span id="ctl00_ContentPlaceHolder1_r2_LabelQC2"><table width="256" cellspacing="0" cellpadding="0" border="0">
     <tbody>
         <tr>
-            <td><img width="256" border="0" height="98" alt="" src="Images/qc-260.jpg" /></td>
+            <td><img width="256" border="0" height="98" alt="" src="../Images/qc-260.jpg" /></td>
         </tr>
     </tbody>
 </table>
