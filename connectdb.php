@@ -2,8 +2,10 @@
 
 const DB_HOST = 'localhost';
 const DB_USER = 'root';
-const DB_PASS = '';
-const DB_NAME = 'HIEUND_TESTDB';
+
+const DB_PASS = '';	
+const DB_NAME = '2022_QLTS';
+
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Lỗi kết nối CSDL: ".$conn->connect_error);
 
