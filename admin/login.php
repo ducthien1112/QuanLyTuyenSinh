@@ -1,4 +1,10 @@
-﻿<!doctype html>
+﻿<?php include_once '../connectdb.php'; 
+
+  
+    
+?>
+
+<!doctype html>
 <html lang="en">
  
 <head>
