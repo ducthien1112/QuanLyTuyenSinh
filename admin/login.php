@@ -1,4 +1,5 @@
-﻿<?php include_once '../connectdb.php'; 
+﻿<?php 
+    include_once '../connectdb.php'; 
 
   
     
