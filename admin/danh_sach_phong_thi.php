@@ -1,18 +1,9 @@
 <?php 
     include_once '../connectdb.php'; 
-    include_once 'danh_sach_tsdk_functions.php'; 
-    $page = "danh_sach_tsdk";
+    include_once 'danh_sach_phong_thi_functions.php'; 
+    $page = "danh_sach_phong_thi";
 
-    $mon_filter = '';
-    if(isset($_GET['mon'])){
-        if(getTenMon($_GET['mon'])!=''){
-            $mon_filter = $_GET['mon'];
-        }
-    }
-
-
-    $listMonChuyen = getListMonChuyen();
-    $listTS = getListTS();
+    
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,7 +12,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Danh sách thí sinh đăng kí</title>
+    <title>Danh sách phòng thi</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
@@ -81,7 +72,7 @@
                 <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Danh sách thí sinh đăng kí</h2>
+                                <h2 class="pageheader-title">Danh sách phòng thi</h2>
                             </div>
                         </div>
                     </div>
@@ -91,64 +82,78 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <?php $listTS = getListTS($mon_filter); ?>    
-                            <h5 class="card-header text-success">Tổng số thí sinh: <?= count($listTS); ?></h5>
-                            <div class="card-body">
-                                <div class="input-group-append be-addon mb-2">
-                                    <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle" aria-expanded="false">Môn chuyên: <?= ($mon_filter=='') ? "Chọn môn" : getTenMon($mon_filter); ?></button>
-                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(801px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                        <?php 
-                                            if($mon_filter!=''){
-                                                echo "<a href='danh_sach_tsdk.php' class='dropdown-item'>Tất cả</a>";
-                                            }                                                
-                                        ?>
-                                                
-                                        <?php 
-                                            foreach ($listMonChuyen as $mon) {
-                                                if($mon['id_mon']==$mon_filter){continue;}
-                                            ?>
-                                                    <a href="danh_sach_tsdk.php?mon=<?= $mon['id_mon'] ?>" class="dropdown-item"><?= $mon['ten_mon'] ?></a>
-                                            <?php } ?>
-                                    </div>
-                                </div>
+                            <?php 
+                                $trangThaiSapXepPhong = getTrangThaiSapXepPhong();
+                                if(!$trangThaiSapXepPhong){
+                                    echo '<div class="card-body border-top">
+                                            <h4>Thông báo!</h4>
+                                            <div class="alert alert-primary" role="alert">
+                                                <p>Phòng thi chưa được sắp xếp theo danh sách thí sinh đăng kí! Vui lòng chọn thực hiện sắp xếp phòng thi tự động</p>
+                                                <hr>
+                                                <p class="mb-0">
+                                                    <form action="" method="post">
+                                                        <button name="btnSapXep" class="btn btn-primary">Thực hiện sắp xếp</button>
+                                                    </form>
+                                                </p>
+                                            </div>
+                                        </div>  ';
+                                }
+
+                                 ?>  
+                                                                      
+                            <?php
+                                $so_luong_mot_phong = 20;
+
+                                // Lấy tất cả danh sách hồ sơ đã thanh toán được sort theo mon_thi_chuyen
+                                $listHoSo = getListHoSo();
+
+                                // Lấy ra danh sách phòng thi toán chung
+                                $listPhongToan = getlistPhongToan();
+                            
+                                // Lấy ra danh sách phòng thi toán chung
+                                $listPhongVan = getlistPhongVan();;
+                                
+
+
+                                // Sắp xếp phòng thi chung
+                                $listHoSo = sapXepPhongThiChung($listHoSo, $listPhongToan, $listPhongVan, $so_luong_mot_phong);
+
+                                // Lấy ra danh sách phong thi cho tất cả môn chuyên
+                                $listPhongThiChuyen = getListPhongThiChuyen();
+
+                                
+                                // Sắp xếp phòng thi chung
+                                $listHoSo = sapXepPhongThiChuyen($listHoSo, $listPhongThiChuyen, $so_luong_mot_phong);
+
+                                
+                                // Cất dữ liệu thông tin danh sách phòng thi 
+                                sapXepDanhSachPhongThi($listHoSo);
+                                echo "Thực hiện sắp xếp phòng thi thành công!";
+
+                             ?>    
+                            <!-- <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first">
                                         <thead>
                                             <tr>
                                                 <th style="width: 10px;" title="Số thứ tự">STT</th>
-                                                <th style="width: 100px;">Họ và tên</th>
-                                                <th style="width: 55px;">Ngày sinh</th>
-                                                <th>Dân tộc</th>
-                                                <th>Hộ khẩu</th>
-                                                <th>Nơi sinh</th>
-                                                <th>Giới tính</th>
-                                                <th>Trường THCS</th>
-                                                <th>Số điện thoại</th>
-                                                <th>Ảnh</th>
-                                                <th style="width: 20px;">Môn thi chuyên</th>
-                                                <th style="width: 55px;">Trạng thái thanh toán</th>
-                                                <th style="width: 55px;">Ngày đăng kí</th>
+                                                <th>Phòng thi</th>
+                                                <th>Ngày thi</th>
+                                                <th>Môn thi</th>
+                                                <th>Loại môn</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php 
                                                 $stt = 0;
-                                                foreach ($listTS as $thiSinh) {
+                                                foreach ($listPhongThi as $phongThi) {
                                             ?>      
                                             <tr>
                                                 <td><?php echo ++$stt; ?></td>
-                                                <td><?= $thiSinh['ten'] ?></td>
-                                                <td><?= $thiSinh['ngay_sinh'] ?></td>
-                                                <td><?= $thiSinh['dan_toc'] ?></td>
-                                                <td><?= $thiSinh['ho_khau'] ?></td>
-                                                <td><?= $thiSinh['noi_sinh'] ?></td>
-                                                <td><?= $thiSinh['gioi_tinh'] ?></td>
-                                                <td><?= $thiSinh['truong_thcs'] ?></td>
-                                                <td><?= $thiSinh['phone'] ?></td>
-                                                <td>Ảnh</td>
-                                                <td><?= $thiSinh['ten_mon'] ?></td>
-                                                <td><?= $thiSinh['thanh_toan_le_phi']==1 ? "Đã thanh toán" : "Chưa thanh toán"  ?></td>
-                                                <td><?= $thiSinh['ngay_dk'] ?></td>
+                                                <td><?= $phongThi['ten_phong'] ?></td>
+                                                <td><?= $phongThi['thoi_gian_thi'] ?></td>
+                                                <td><?= $phongThi['ten_mon'] ?></td>
+                                                <td><?= $phongThi['loai_mon']=='chuyen' ? "Chuyên"  : "Chung" ?></td>
                                             </tr>
                                             <?php
                                                 }
@@ -156,7 +161,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!-- ============================================================== -->

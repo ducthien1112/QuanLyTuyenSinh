@@ -11,13 +11,16 @@
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="<?php echo (in_array($page, ["index", "danh_sach_tsdk"])) ? "true" : ""; ?>" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Quản lí chung<span class="badge badge-success">6</span></a>
-                        <div id="submenu-1" class="collapse submenu <?php echo (in_array($page, ["index", "danh_sach_tsdk"])) ? "show" : ""; ?>" style="">
+                        <div id="submenu-1" class="collapse submenu <?php echo (in_array($page, ["index", "danh_sach_tsdk", "danh_sach_phong_thi"])) ? "show" : ""; ?>" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link <?php echo ($page=="index") ? "active" : ""; ?>" href="index.php">Cổng đăng kí</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link <?php echo ($page=="danh_sach_tsdk") ? "active" : ""; ?>" href="danh_sach_tsdk.php">Danh sách thí sinh đăng kí</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo ($page=="danh_sach_phong_thi") ? "active" : ""; ?>" href="danh_sach_phong_thi.php">Danh sách phòng thi</a>
                                 </li>
                             </ul>
                         </div>
