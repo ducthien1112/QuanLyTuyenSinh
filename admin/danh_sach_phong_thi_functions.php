@@ -1,4 +1,58 @@
-<?php 
+<?php
+	include_once "cong_dk_functions.php";
+	include_once 'danh_sach_tsdk_functions.php'; 
+	/**
+	 * Xử lí trang
+	 * */	
+
+	$trangThaiSapXepPhong = getTrangThaiSapXepPhong();
+	$msg_SapXep = false; 
+	$msg_EndTimeCDK = false;
+	if(isset($_POST['btnSapXep']) && $trangThaiSapXepPhong==false){
+		if(!checkEndTimeCongDK()){
+			$msg_EndTimeCDK = true;
+		}
+		else{
+
+			$so_luong_mot_phong = 20;
+
+	        // Lấy tất cả danh sách hồ sơ đã thanh toán được sort theo mon_thi_chuyen
+	        $listHoSo = getListHoSo();
+
+	        // Lấy ra danh sách phòng thi toán chung
+	        $listPhongToan = getlistPhongToan();
+	    
+	        // Lấy ra danh sách phòng thi toán chung
+	        $listPhongVan = getlistPhongVan();;
+	        
+
+
+	        // Sắp xếp phòng thi chung
+	        $listHoSo = sapXepPhongThiChung($listHoSo, $listPhongToan, $listPhongVan, $so_luong_mot_phong);
+
+	        // Lấy ra danh sách phong thi cho tất cả môn chuyên
+	        $listPhongThiChuyen = getListPhongThiChuyen();
+
+	        
+	        // Sắp xếp phòng thi chung
+	        $listHoSo = sapXepPhongThiChuyen($listHoSo, $listPhongThiChuyen, $so_luong_mot_phong);
+
+	        
+	        // Cất dữ liệu thông tin danh sách phòng thi 
+	        insertSapXepDanhSachPhongThi($listHoSo);
+	        $trangThaiSapXepPhong = true;
+	        $msg_SapXep = true;
+	    }
+	}
+
+	
+
+
+
+	/**
+	 * Define function
+	 * */
+
 	function getTrangThaiSapXepPhong()
 	{
 		$trangThaiSapXepPhong = false;
@@ -94,7 +148,7 @@
         return $listHoSo;
 	}
 
-	function sapXepDanhSachPhongThi($listHoSo){
+	function insertSapXepDanhSachPhongThi($listHoSo){
         $sbd = 0;
         GLOBAL $conn;
         foreach ($listHoSo as $key => $hoSo) {
@@ -112,6 +166,52 @@
             $sql = "INSERT INTO `hoc_sinh`(`id_hoc_sinh`, `ten`, `phone`, `ngay_sinh`, `gioi_tinh`, `id_phong_thi_van`, `id_ho_so`, `id_phong_thi_toan`, `id_phong_thi_chuyen`) VALUES ('$sbd_db','$ten','$phone','$ngay_sinh','$gioi_tinh','$id_phong_thi_van','$id_ho_so','$id_phong_thi_toan','$id_phong_thi_chuyen')";
             mysqli_query($conn, $sql);
         }
+	}
+
+	function checkEndTimeCongDK(){
+		$congDK = getCongDK();
+		if(strtotime($congDK['end_time']) <= strtotime(date("Y-m-d h:i:sa"))){
+			return true;
+		}
+		return false;
+	}
+
+
+	function getListMon(){
+		GLOBAL $conn;
+        $sql = "SELECT * FROM mon";
+        $result = mysqli_query($conn, $sql);
+        $listMon = [];
+        while($row = mysqli_fetch_assoc($result)){
+        	$listMon[] = $row;
+        }
+        return $listMon;
+	}
+
+	function getListPhongThi($mon_filter)
+	{
+		GLOBAL $conn;
+		$fieldNameInnerJoinDB = [
+            1 => 'id_phong_thi_toan', 
+            2 => 'id_phong_thi_van' 
+        ];
+        $fieldNameInnerJoinsSQL = $fieldNameInnerJoinDB[$mon_filter] ?? "id_phong_thi_chuyen";
+        $sql = "SELECT * FROM hoc_sinh INNER JOIN phong_thi ON hoc_sinh.$fieldNameInnerJoinsSQL=phong_thi.id_phong_thi WHERE phong_thi.id_mon = '$mon_filter'";
+        $result = mysqli_query($conn, $sql);
+
+        $listPhongThi = [];
+        while($row = mysqli_fetch_assoc($result)){
+            $id_phong = $row['id_phong'];
+            $listPhongThi[$id_phong][] = [
+                'id_hoc_sinh' => $row['id_hoc_sinh'],
+                'ten' => $row['ten'],
+                'phone' => $row['phone'],
+                'ngay_sinh' => $row['ngay_sinh'],
+                'gioi_tinh' => $row['gioi_tinh'],
+                'ten_phong' => $row['ten_phong']
+            ];
+        }
+        return $listPhongThi;
 	}
 
  ?>
