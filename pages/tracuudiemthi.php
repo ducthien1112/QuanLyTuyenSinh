@@ -241,7 +241,7 @@ include "../connectdb.php";
                     <table border="0" cellpadding="0" cellspacing="0" width="996px">
                         <tr>
                             <td style="padding:35px 10px 0 138px; width:50%; vertical-align:top;">
-                                <a href="/dang-nhap.aspx">Đăng nhập</a>
+                                <a href="../admin/">Đăng nhập</a>
                                 |
                                 <a href="/sitemap.aspx">Site map</a>
                                 |
