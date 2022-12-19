@@ -177,9 +177,19 @@ include "../connectdb.php";
                                         <th class="bang">Số điện thoại</th>
                                         <th class="bang">Văn</th>
                                         <th class="bang">Toán</th>
-                                       <th class="bang">Môn chuyên</th>
                                 <?php
-                                if (isset($_POST['gui'])) 
+                                    function getTenMon($id_Phong)
+                                    {
+                                        GLOBAL $conn;
+                                        $tenMon = '';
+                                        $sql = "SELECT * FROM `phong_thi` INNER JOIN mon ON phong_thi.id_mon = mon.id_mon WHERE phong_thi.id_phong_thi = '$id_Phong'";
+                                        $result = mysqli_query($conn, $sql);
+                                        if(mysqli_num_rows($result) > 0){
+                                            $tenMon = mysqli_fetch_array($result)['ten_mon'];
+                                        }
+                                        return 'Điểm chuyên '.$tenMon;
+                                    }
+                                   if (isset($_POST['gui'])) 
                                 {
                                     $sbd="";
                                     $sql = "SELECT * FROM `diem` INNER JOIN hoc_sinh on sbd = hoc_sinh.id_hoc_sinh WHERE sbd = '$_POST[sbd]';";
@@ -193,6 +203,7 @@ include "../connectdb.php";
                                             {
                                                 $i++;
                                                 ?>
+                                        <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?></th>
                                     </tr>
                                  <tr>
                                      <td class="bang"><?php echo $i; ?></td>
