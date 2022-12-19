@@ -122,7 +122,9 @@
                                 }
 
                             ?>  
-                                                                      
+                             
+
+                            <?php if($trangThaiSapXepPhong){ ?>                                         
                             <div class="card-body">
                                 <div class="input-group-append be-addon mb-2">
                                     <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle" aria-expanded="false">Môn thi: 
@@ -152,6 +154,7 @@
                                     }
                                  ?>
                             </div>
+                        <?php } ?>
                         </div>
                     </div>
 
@@ -159,7 +162,7 @@
                     <?php
                         $listPhongThi = getListPhongThi($mon_filter);
 
-                        if($mon_filter != ''){
+                        if($mon_filter != '' && $trangThaiSapXepPhong==true){
                      ?>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
                                 <div class="tab-vertical">
