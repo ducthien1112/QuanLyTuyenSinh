@@ -1,6 +1,8 @@
 
 <?php
 
+include_once "../connectdb.php";
+
 function check_valid_phone($phone){
     if (strlen($phone) != 10){
         return false;
@@ -14,6 +16,7 @@ function check_valid_phone($phone){
 $loi="";
 
 if (isset($_POST['btndangky']) == true) {
+    var_dump($_POST);
     $hoten = $_POST['hoten'];
     $ngaysinh = $_POST['ngaysinh'];
     $dantoc = $_POST['dantoc'];
@@ -28,10 +31,10 @@ if (isset($_POST['btndangky']) == true) {
     $monchuyen = $_POST['monchuyen'];
     $truong_thcs = $_POST['thcs'];
     $sdt = $_POST['phone'];
-    $img = $_FILES['img-duthi']['name'];
-    $target_dir = "uploads/";
+    $img = uniqid().'.'.pathinfo($_FILES["img-duthi"]["name"], PATHINFO_EXTENSION);
+    $target_dir = "../Images/";
     $target_file = $target_dir .$img;
-    move_uploaded_file($_FILES ["img-duthi"]["tmp-name"], $target_file);
+    move_uploaded_file($_FILES["img-duthi"]["tmp_name"], $target_file);
 //        echo "$hoten, $gioitinh, $monchuyen, $dantoc, $hokhau, $ngaysinh, $noisinh, $sdt, $truong_thcs";
 
     if (strlen($hoten) == 0 || strlen($ngaysinh) ==0 || strlen($truong_thcs) ==0  || strlen($dantoc) ==0
@@ -46,7 +49,11 @@ if (isset($_POST['btndangky']) == true) {
     }
     else {
         $loi = "validate success";
-        /// ghi du lieu vao bang trong db dum toi voi
+        
+
+        // Insert data into database
+        $sql = "INSERT INTO `ho_so`(`id_ho_so`, `ten`, `ngay_sinh`, `dan_toc`, `ho_khau`, `noi_sinh`, `gioi_tinh`, `mon_thi_chuyen`, `truong_thcs`, `phone`, `anh`, `thanh_toan_le_phi`) VALUES (null, '$hoten','$ngaysinh','$dantoc','$hokhau','$noisinh','$gioitinh','$monchuyen','$truong_thcs','$sdt','$img', 0)";
+         $isStatusQuery = mysqli_query($conn, $sql) ? true : false;
     }
 }
 ?>
@@ -91,12 +98,6 @@ if (isset($_POST['btndangky']) == true) {
           content="Xe tải chuyên dùng, THÔNG BÁO TUYỂN SINH LỚP 10 NĂM HỌC 2016-2017, Trường THPT Chuyên Sư phạm"/>
 </head>
 <body>
-<form name="aspnetForm" method="post" action="/thong-bao-tuyen-sinh-lop-10-nam-hoc-2016-2017_v417.aspx" id="aspnetForm">
-    <div>
-        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="057539E7"/>
-        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
-               value="/wEdAAOloKlWVylZVjplRtgUkRT1jz4b6uJwYpZbH8ThP2f/J08/4v+jK1cJjC20h4DMK8ISaq+8FhDMH9rh7jcdXKCI1hgYHg=="/>
-    </div>
     <div align="center">
         <table border="0" cellpadding="0" cellspacing="0" width="996px">
             <tr>
@@ -217,10 +218,17 @@ if (isset($_POST['btndangky']) == true) {
                                             <span id="ctl00_ContentPlaceHolder1_LabelTen" style="color:#0565A9;"><h2> ĐĂNG KÍ DỰ THI TUYỂN SINH LỚP 10</h2></span>
 
                                             <!-- Form Sign -->
-                                            <form style="width: 600px" class="border border-primary border-2 m-auto p-2" method="post" enctype="multipart/form-data">
+                                            <form action="#" style="width: 600px" class="border-2 m-auto p-2" method="post" enctype="multipart/form-data">
                                                 <?php if ( $loi != "" && $loi != "validate success" ) { ?>
                                                     <div class="alert alert-danger"> <?php echo $loi ?> </div>
                                                 <?php
+                                                }
+
+                                                if($isStatusQuery){
+                                                    echo '<div class="alert alert-success">Đăng kí dự thi thành công!</div>';
+                                                }
+                                                else{
+                                                    echo '<div class="alert alert-danger">Không thể đăng kí! Vui lòng liên hệ trường để được hỗ trợ.</div>';
                                                 }
                                                 ?>
                                                 <div class="mb-3">
@@ -247,7 +255,7 @@ if (isset($_POST['btndangky']) == true) {
                                                     <div>Giới tính</div>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="nam" name="gioitinh" value="1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">Nam</label>
+                                                        <label class="form-check-label" for="nam">Nam</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="nu" name="gioitinh" value="2">
@@ -260,13 +268,13 @@ if (isset($_POST['btndangky']) == true) {
                                                     <select class="form-select form-select-sm p-2" aria-label=".form-select-sm example" name="monchuyen"
                                                             id="monchuyen">
                                                         <option selected>Chọn môn thi chuyên</option>
-                                                        <option value="Toán">Toán</option>
-                                                        <option value="Văn">Văn học</option>
-                                                        <option value="Anh">Tiếng Anh</option>
-                                                        <option value="Tin">Tin học</option>
-                                                        <option value="Lý">Vật lý</option>
-                                                        <option value="Hoá">Hoá học</option>
-                                                        <option value="Sinh">Sinh học</option>
+                                                        <option value="3">Toán</option>
+                                                        <option value="8">Văn học</option>
+                                                        <option value="9">Tiếng Anh</option>
+                                                        <option value="4">Tin học</option>
+                                                        <option value="5">Vật lý</option>
+                                                        <option value="6">Hoá học</option>
+                                                        <option value="7">Sinh học</option>
 
                                                     </select>
                                                 </div>
@@ -1234,6 +1242,5 @@ Email: c3chuyendhsp@hanoiedu.vn<br/>
         </table>
 
     </div>
-</form>
 </body>
 </html>
