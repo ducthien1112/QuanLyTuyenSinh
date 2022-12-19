@@ -1,4 +1,6 @@
+
 <?php
+
 function check_valid_phone($phone){
     if (strlen($phone) != 10){
         return false;
@@ -7,7 +9,9 @@ function check_valid_phone($phone){
         return false;
     }
     return true;
+
 }
+$loi="";
 
 if (isset($_POST['btndangky']) == true) {
     $hoten = $_POST['hoten'];
@@ -27,16 +31,19 @@ if (isset($_POST['btndangky']) == true) {
 
 //        echo "$hoten, $gioitinh, $monchuyen, $dantoc, $hokhau, $ngaysinh, $noisinh, $sdt, $truong_thcs";
 
-    $loi="";
     if (strlen($hoten) == 0 || strlen($ngaysinh) ==0 || strlen($truong_thcs) ==0  || strlen($dantoc) ==0
         || strlen($hokhau) ==0
         || strlen($noisinh) ==0
         || strlen($monchuyen) ==0
         || strlen($sdt) ==0 ) {
-        $loi = "Vui lòng nhập đầy đủ </br>";
+        $loi = "Vui lòng nhập thông tin đầy đủ !!! </br>";
     }
-    if (check_valid_phone($sdt)){
-        $loi = "Vui lòng nhập đúng số điện thoại </br>";
+    else if (!check_valid_phone($sdt)){
+        $loi = "Vui lòng nhập đúng số điện thoại !!! </br>";
+    }
+    else {
+        $loi = "validate success";
+        /// ghi du lieu vao bang trong db dum toi voi
     }
 }
 ?>
@@ -45,7 +52,7 @@ if (isset($_POST['btndangky']) == true) {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <form style="width: 600px" class="border border-primary border-2 m-auto p-2" method="post">
-    <?php if ( $loi != "") { ?>
+    <?php if ( $loi != "" && $loi != "validate success" ) { ?>
         <div class="alert alert-danger"> <?php echo $loi ?> </div>
     <?php
     }
