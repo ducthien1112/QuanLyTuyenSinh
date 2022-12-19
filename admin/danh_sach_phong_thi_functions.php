@@ -1,6 +1,7 @@
 <?php
 	include_once "cong_dk_functions.php";
 	include_once 'danh_sach_tsdk_functions.php'; 
+	
 	/**
 	 * Xử lí trang
 	 * */	
@@ -22,7 +23,7 @@
 	        // Lấy ra danh sách phòng thi toán chung
 	        $listPhongToan = getlistPhongToan();
 	    
-	        // Lấy ra danh sách phòng thi toán chung
+	        // Lấy ra danh sách phòng thi văn chung
 	        $listPhongVan = getlistPhongVan();;
 	        
 
@@ -34,9 +35,9 @@
 	        $listPhongThiChuyen = getListPhongThiChuyen();
 
 	        
-	        // Sắp xếp phòng thi chung
+	        // Sắp xếp phòng thi chuyên
 	        $listHoSo = sapXepPhongThiChuyen($listHoSo, $listPhongThiChuyen, $so_luong_mot_phong);
-
+	        
 	        
 	        // Cất dữ liệu thông tin danh sách phòng thi 
 	        insertSapXepDanhSachPhongThi($listHoSo);
@@ -117,18 +118,20 @@
         return $listPhongThiChuyen;
 	}
 
+
 	function sapXepPhongThiChung($listHoSo, $listPhongToan, $listPhongVan, $so_luong_mot_phong)
 	{
 		$count_thi_sinh_1Phong = 1;
         foreach ($listHoSo as $key => $hoSo) {
-            $listHoSo[$key]['id_phong_thi_toan'] = $listPhongToan[0];        
-            $listHoSo[$key]['id_phong_thi_van'] = $listPhongVan[0];        
-            $count_thi_sinh_1Phong++;
             if($count_thi_sinh_1Phong > $so_luong_mot_phong){
-                $count_thi_sinh_1Phong = 0;
+                $count_thi_sinh_1Phong = 1;
                 array_shift($listPhongToan);
                 array_shift($listPhongVan);
             }
+
+            $listHoSo[$key]['id_phong_thi_toan'] = $listPhongToan[0];        
+            $listHoSo[$key]['id_phong_thi_van'] = $listPhongVan[0];        
+            $count_thi_sinh_1Phong++;
         }
         return $listHoSo;
 	}
@@ -136,14 +139,16 @@
 	function sapXepPhongThiChuyen($listHoSo, $listPhongThiChuyen, $so_luong_mot_phong)
 	{
 		$count_thi_sinh_1Phong = 1;
+		$old_id_mon_chuyen = '';
         foreach ($listHoSo as $key => $hoSo) {
             $id_mon_chuyen = $hoSo['mon_thi_chuyen'];
-            $listHoSo[$key]['id_phong_thi_chuyen'] = $listPhongThiChuyen[$id_mon_chuyen][0];
-            $count_thi_sinh_1Phong++;
-            if($count_thi_sinh_1Phong > $so_luong_mot_phong){
-                $count_thi_sinh_1Phong = 0;
+            if(($count_thi_sinh_1Phong > $so_luong_mot_phong) || ($old_id_mon_chuyen!='' && $old_id_mon_chuyen!=$id_mon_chuyen)){
+                $count_thi_sinh_1Phong = 1;
                 array_shift($listPhongThiChuyen[$id_mon_chuyen]);
             }
+            $listHoSo[$key]['id_phong_thi_chuyen'] = $listPhongThiChuyen[$id_mon_chuyen][0];
+            $count_thi_sinh_1Phong++;
+			$old_id_mon_chuyen = $id_mon_chuyen;
         }
         return $listHoSo;
 	}
