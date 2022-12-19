@@ -75,44 +75,47 @@
 
             <span id="ctl00_MenuVi1_LabelMenu"><div id="ddtopmenubar" class="mattblackmenu">
 <ul>
-<li><a href="/" title="Trang chủ">Trang chủ</a></li>
-<li><a rel="ddsubmenu1" href="/gioi-thieu_g0.aspx" title="Giới thiệu">Giới thiệu</a></li>
-<li><a href="/lich-tuan.aspx" title="Lịch tuần">Lịch tuần</a></li>
+<li><a href="index.php" title="Trang chủ">Trang chủ</a></li>
+<li><a rel="ddsubmenu1" href="" title="Giới thiệu">Giới thiệu</a></li>
+<li><a href="" title="Lịch tuần">Lịch tuần</a></li>
 
-<li><a rel="ddsubmenu5559" href="/tin-tuc_t9.aspx" title="TIN TỨC">TIN TỨC</a></li>
+<li><a rel="ddsubmenu5559" href="" title="TIN TỨC">TIN TỨC</a></li>
 <ul id="ddsubmenu5559" class="ddsubmenustyle">
-<li><a href="/hoat-dong-noi-bo_t15.aspx" title="Hoạt động nội bộ">Hoạt động nội bộ</a></li>
-<li><a href="/hoi-nghi-hoi-thao_t14.aspx" title="Hội nghị - Hội thảo">Hội nghị - Hội thảo</a></li>
-<li><a href="/hoat-dong-doan_t16.aspx" title="Hoạt động Đoàn">Hoạt động Đoàn</a></li>
-<li><a href="/hoc-bong-du-hoc_t69.aspx" title="Học bổng - Du học">Học bổng - Du học</a></li>
+<li><a href="" title="Hoạt động nội bộ">Hoạt động nội bộ</a></li>
+<li><a href="" title="Hội nghị - Hội thảo">Hội nghị - Hội thảo</a></li>
+<li><a href="" title="Hoạt động Đoàn">Hoạt động Đoàn</a></li>
+<li><a href="" title="Học bổng - Du học">Học bổng - Du học</a></li>
 </ul>
 
-<li><a rel="ddsubmenu55512" href="/55-nam-csp_t12.aspx" title="55 Năm CSP">55 Năm CSP</a></li>
+
+    <li><a rel="ddsubmenu55512" href="" title="55 Năm CSP">55 Năm CSP</a></li>
 <ul id="ddsubmenu55512" class="ddsubmenustyle">
-<li><a href="/thu-ngo_t25.aspx" title="Thư ngỏ">Thư ngỏ</a></li>
-<li><a href="/ky-niem-55-nam-csp_t67.aspx" title="Kỷ niệm 55 Năm CSP">Kỷ niệm 55 Năm CSP</a></li>
+<li><a href="" title="Thư ngỏ">Thư ngỏ</a></li>
+<li><a href="" title="Kỷ niệm 55 Năm CSP">Kỷ niệm 55 Năm CSP</a></li>
 </ul>
 
 
-<li><a rel="ddsubmenu3" href="/thong-bao.aspx" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a></li>
-<li><a rel="ddsubmenu2" href="/thu-vien.aspx" title="Thư viện">Thư viện</a></li>
-<li class="End"><a href="/lien-he.aspx" title="Liên hệ">Liên hệ</a></li>
+<li><a rel="ddsubmenu3" href="" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a></li>
+<li><a rel="ddsubmenu2" href="" title="Thư viện">Thư viện</a></li>
+<li class="End"><a href="" title="Liên hệ">Liên hệ</a></li>
 <ul></div>
 <div id="ddsubmenu1" class="ddsubmenustyle">
-<li><a href="/gioi-thieu-chung_h40.aspx" title="Giới thiệu chung">Giới thiệu chung</a></li>
-<li><a href="/bang-vang-thanh-tich_h41.aspx" title="Bảng vàng thành tích">Bảng vàng thành tích</a></li>
-<li><a href="/50-nam-csp_h65.aspx" title="50 Năm CSP">50 Năm CSP</a></li>
+<li><a href="" title="Giới thiệu chung">Giới thiệu chung</a></li>
+<li><a href="" title="Bảng vàng thành tích">Bảng vàng thành tích</a></li>
+<li><a href="" title="50 Năm CSP">50 Năm CSP</a></li>
 </div>
 <div id="ddsubmenu2" class="ddsubmenustyle">
-<li><a href="/tai-lieu.aspx" title="Tài liệu tham khảo">Tài liệu tham khảo</a></li>
-<li><a href="/video-clip.aspx" title="Video Clip">Video Clip</a></li>
-<li><a href="/photo-album.aspx" title="Photo Album">Photo Album</a></li>
+<li><a href="" title="Tài liệu tham khảo">Tài liệu tham khảo</a></li>
+<li><a href="" title="Video Clip">Video Clip</a></li>
+<li><a href="" title="Photo Album">Photo Album</a></li>
 </div>
 <div id="ddsubmenu3" class="ddsubmenustyle">
-<li><a href="/thoi-khoa-bieu.aspx" title="Thời khóa biểu học sinh">Thời khóa biểu học sinh</a></li>
-<li><a href="/thong-bao.aspx" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
-<li><a href="/phong-thi.aspx" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
-<li><a href="/diem-thi.aspx" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+<li><a href="" title="Thời khóa biểu học sinh">Thời khóa biểu học sinh</a></li>
+<li><a href="" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
+<li><a href="" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
+<li><a href="" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+    <li><a href="form_sign.php" title="Đăng ký dự thi">Đăng ký dự thi</a></li>
+
 </div>
 </span>
                                 <script type="text/javascript">
@@ -124,7 +127,7 @@
                             <td class="bg-head2">
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
-                                        <td class="head-ngay">
+                                        <td class="head-ngay" bgcolor="#f0ffff">
                                             <span id="ctl00_MenuVi1_LabelHotline">Thứ Ba, ngày 13 tháng 12 năm 2022</span>
                                         </td>
                                         <td style="text-align: right; width: 204px;">
@@ -164,8 +167,10 @@
                                     <tr>
                                         <td class="bg-t2">
                                             <div class="tieude">
-                                                <span id="ctl00_ContentPlaceHolder1_LabelTieuDeCategory"><a href="/">Trang chủ</a> &raquo; <a
-                                                            href="/thong-bao.aspx" title="Bảng tin - Thông báo">Bảng tin - Thông báo</a></span>
+                                                <span id="ctl00_ContentPlaceHolder1_LabelTieuDeCategory"><a
+                                                            href="index.php">Trang chủ</a> &raquo; <a
+                                                            href=""
+                                                            title="Bảng tin - Thông báo">Bảng tin - Thông báo</a></span>
                                             </div>
 
                                             <span id="ctl00_ContentPlaceHolder1_LabelTieuDe"></span>
@@ -686,27 +691,27 @@ font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">GS.TS Nguyễn Văn M
                                                     <ul id="items2">
 
                                                         <li>
-                                                            <a href="/nu-sinh-lot-xac-quyet-tro-thanh-vien-ngoc-sang-gianh-hoc-bong-17-ti-dong_v756.aspx"
+                                                            <a href=""
                                                                title="Nữ sinh 'lột xác' quyết trở thành 'viên ngọc sáng' giành học bổng 1,7 tỉ đồng">&bull;
                                                                 Nữ sinh 'lột xác' quyết trở thành 'viên ngọc sáng' giành
                                                                 học bổng 1,7 tỉ đồng</a>
                                                         </li>
 
                                                         <li>
-                                                            <a href="/tien-si-toan-hoc-9x-bo-co-hoi-lam-viec-o-phap-ve-viet-nam-day-hoc_v755.aspx"
+                                                            <a href=""
                                                                title="Tiến sĩ toán học 9X: Bỏ cơ hội làm việc ở Pháp về Việt Nam dạy học">&bull;
                                                                 Tiến sĩ toán học 9X: Bỏ cơ hội làm việc ở Pháp về Việt
                                                                 Nam dạy học</a>
                                                         </li>
 
                                                         <li>
-                                                            <a href="/thong-bao-lich-tap-trung-dau-nam-hoc-2022-2023_v754.aspx"
+                                                            <a href=""
                                                                title="THÔNG BÁO LỊCH TẬP TRUNG ĐẦU NĂM HỌC 2022-2023">&bull;
                                                                 THÔNG BÁO LỊCH TẬP TRUNG ĐẦU NĂM HỌC 2022-2023</a>
                                                         </li>
 
                                                         <li>
-                                                            <a href="/cac-hoc-sinh-vn-dat-diem-tuyet-doi-tai-imo-olympic-toan-hoc-quoc-te_v753.aspx"
+                                                            <a href=""
                                                                title="Các học sinh VN đạt điểm tuyệt đối tại IMO (Olympic Toán học Quốc tế)">&bull;
                                                                 Các học sinh VN đạt điểm tuyệt đối tại IMO (Olympic Toán
                                                                 học Quốc tế)</a>
@@ -1461,7 +1466,7 @@ font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">GS.TS Nguyễn Văn M
                                                                             border="0">
     <tbody>
         <tr>
-            <td><img width="256" border="0" height="98" alt="" src="/UserFiles/image/quang-cao-trong/qc-260.jpg"/></td>
+            <td><img width="256" border="0" height="98" alt="" src=""/></td>
         </tr>
     </tbody>
 </table>
@@ -1475,35 +1480,35 @@ font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">GS.TS Nguyễn Văn M
     <tbody>
         <tr>
             <td><a href="http://res.edu.vn"><img width="173" height="366" alt=""
-                                                 src="/UserFiles/image/quangcaomoitaitro/Banner%20RES%20(1).png"/></a></td>
+                                                 src=""/></a></td>
         </tr>
         <tr>
             <td><a href="https://www.facebook.com/WebsiteTruongThptChuyenDaiHocSuPham"><img width="173" border="0"
                                                                                             height="141" alt=""
-                                                                                            src="/UserFiles/image/qc-trai-home/th_01.jpg"/></a></td>
+                                                                                            src=""/></a></td>
         </tr>
         <tr>
             <td><a href="https://www.facebook.com/WebsiteTruongThptChuyenDaiHocSuPham"><img width="173" border="0"
                                                                                             height="63" alt=""
-                                                                                            src="/UserFiles/image/qc-trai-home/th_02.jpg"/></a></td>
+                                                                                            src=""/></a></td>
         </tr>
         <tr>
-            <td><img width="173" border="0" height="101" alt="" src="/UserFiles/image/qc-trai-home/th_03.jpg"/></td>
+            <td><img width="173" border="0" height="101" alt="" src=""/></td>
         </tr>
         <tr>
-            <td><img width="173" border="0" height="101" alt="" src="/UserFiles/image/qc-trai-home/th_04.jpg"/></td>
+            <td><img width="173" border="0" height="101" alt="" src=""/></td>
         </tr>
         <tr>
-            <td><img width="173" border="0" height="99" alt="" src="/UserFiles/image/qc-trai-home/th_05.jpg"/></td>
+            <td><img width="173" border="0" height="99" alt="" src=""/></td>
         </tr>
         <tr>
-            <td><img width="173" border="0" height="101" alt="" src="/UserFiles/image/qc-trai-home/th_06.jpg"/></td>
+            <td><img width="173" border="0" height="101" alt="" src=""/></td>
         </tr>
         <tr>
-            <td><img width="173" border="0" height="100" alt="" src="/UserFiles/image/qc-trai-home/th_07.jpg"/></td>
+            <td><img width="173" border="0" height="100" alt="" src=""/></td>
         </tr>
         <tr>
-            <td><img width="173" border="0" height="96" alt="" src="/UserFiles/image/qc-trai-home/th_08.jpg"/></td>
+            <td><img width="173" border="0" height="96" alt="" src=""/></td>
         </tr>
     </tbody>
 </table></span>

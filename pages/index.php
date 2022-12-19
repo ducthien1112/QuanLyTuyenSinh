@@ -44,7 +44,7 @@
     <meta name="keywords" content="Xe tải chuyên dùng, Bảng tin - Thông báo, Trường THPT Chuyên Sư phạm"/>
 </head>
 <body>
-<form name="aspnetForm" method="post" action="/thong-bao.aspx" id="aspnetForm">
+<form name="aspnetForm" method="post" action="" id="aspnetForm">
     <div>
         <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value=""/>
         <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value=""/>
@@ -108,44 +108,46 @@
 
             <span id="ctl00_MenuVi1_LabelMenu"><div id="ddtopmenubar" class="mattblackmenu">
 <ul>
-<li><a href="/" title="Trang chủ">Trang chủ</a></li>
-<li><a rel="ddsubmenu1" href="/gioi-thieu_g0.aspx" title="Giới thiệu">Giới thiệu</a></li>
-<li><a href="/lich-tuan.aspx" title="Lịch tuần">Lịch tuần</a></li>
+<li><a href="index.php" title="Trang chủ">Trang chủ</a></li>
+<li><a rel="ddsubmenu1" href="" title="Giới thiệu">Giới thiệu</a></li>
+<li><a href="" title="Lịch tuần">Lịch tuần</a></li>
 
-<li><a rel="ddsubmenu5559" href="/tin-tuc_t9.aspx" title="TIN TỨC">TIN TỨC</a></li>
+<li><a rel="ddsubmenu5559" href="" title="TIN TỨC">TIN TỨC</a></li>
 <ul id="ddsubmenu5559" class="ddsubmenustyle">
-<li><a href="/hoat-dong-noi-bo_t15.aspx" title="Hoạt động nội bộ">Hoạt động nội bộ</a></li>
-<li><a href="/hoi-nghi-hoi-thao_t14.aspx" title="Hội nghị - Hội thảo">Hội nghị - Hội thảo</a></li>
-<li><a href="/hoat-dong-doan_t16.aspx" title="Hoạt động Đoàn">Hoạt động Đoàn</a></li>
-<li><a href="/hoc-bong-du-hoc_t69.aspx" title="Học bổng - Du học">Học bổng - Du học</a></li>
+<li><a href="" title="Hoạt động nội bộ">Hoạt động nội bộ</a></li>
+<li><a href="" title="Hội nghị - Hội thảo">Hội nghị - Hội thảo</a></li>
+<li><a href="" title="Hoạt động Đoàn">Hoạt động Đoàn</a></li>
+<li><a href="" title="Học bổng - Du học">Học bổng - Du học</a></li>
 </ul>
 
-<li><a rel="ddsubmenu55512" href="/55-nam-csp_t12.aspx" title="55 Năm CSP">55 Năm CSP</a></li>
+<li><a rel="ddsubmenu55512" href="" title="55 Năm CSP">55 Năm CSP</a></li>
 <ul id="ddsubmenu55512" class="ddsubmenustyle">
-<li><a href="/thu-ngo_t25.aspx" title="Thư ngỏ">Thư ngỏ</a></li>
-<li><a href="/ky-niem-55-nam-csp_t67.aspx" title="Kỷ niệm 55 Năm CSP">Kỷ niệm 55 Năm CSP</a></li>
+<li><a href="" title="Thư ngỏ">Thư ngỏ</a></li>
+<li><a href="" title="Kỷ niệm 55 Năm CSP">Kỷ niệm 55 Năm CSP</a></li>
 </ul>
 
 
-<li><a rel="ddsubmenu3" href="/thong-bao.aspx" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a></li>
-<li><a rel="ddsubmenu2" href="/thu-vien.aspx" title="Thư viện">Thư viện</a></li>
-<li class="End"><a href="/lien-he.aspx" title="Liên hệ">Liên hệ</a></li>
+<li><a rel="ddsubmenu3" href="" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a></li>
+<li><a rel="ddsubmenu2" href="" title="Thư viện">Thư viện</a></li>
+<li class="End"><a href="" title="Liên hệ">Liên hệ</a></li>
 <ul></div>
 <div id="ddsubmenu1" class="ddsubmenustyle">
-<li><a href="/gioi-thieu-chung_h40.aspx" title="Giới thiệu chung">Giới thiệu chung</a></li>
-<li><a href="/bang-vang-thanh-tich_h41.aspx" title="Bảng vàng thành tích">Bảng vàng thành tích</a></li>
-<li><a href="/50-nam-csp_h65.aspx" title="50 Năm CSP">50 Năm CSP</a></li>
+<li><a href="" title="Giới thiệu chung">Giới thiệu chung</a></li>
+<li><a href="" title="Bảng vàng thành tích">Bảng vàng thành tích</a></li>
+<li><a href="" title="50 Năm CSP">50 Năm CSP</a></li>
 </div>
 <div id="ddsubmenu2" class="ddsubmenustyle">
-<li><a href="/tai-lieu.aspx" title="Tài liệu tham khảo">Tài liệu tham khảo</a></li>
-<li><a href="/video-clip.aspx" title="Video Clip">Video Clip</a></li>
-<li><a href="/photo-album.aspx" title="Photo Album">Photo Album</a></li>
+<li><a href="" title="Tài liệu tham khảo">Tài liệu tham khảo</a></li>
+<li><a href="" title="Video Clip">Video Clip</a></li>
+<li><a href="" title="Photo Album">Photo Album</a></li>
 </div>
 <div id="ddsubmenu3" class="ddsubmenustyle">
-<li><a href="/thoi-khoa-bieu.aspx" title="Thời khóa biểu học sinh">Thời khóa biểu học sinh</a></li>
-<li><a href="/thong-bao.aspx" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
-<li><a href="/phong-thi.aspx" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
-<li><a href="/diem-thi.aspx" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+<li><a href="" title="Thời khóa biểu học sinh">Thời khóa biểu học sinh</a></li>
+<li><a href="content.php" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
+<li><a href="" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
+<li><a href="" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+    <li><a href="form_sign.php" title="Form đăng ký ">Đăng ký dự thi </a></li>
+
 </div>
 </span>
                                 <script type="text/javascript">
@@ -157,7 +159,7 @@
                             <td class="bg-head2">
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
-                                        <td class="head-ngay">
+                                        <td class="head-ngay" bgcolor="#f0ffff">
                                             <span id="ctl00_MenuVi1_LabelHotline">Thứ Tư, ngày 30 tháng 11 năm 2022</span>
                                         </td>
                                         <td style="text-align: right; width: 204px;">
@@ -196,8 +198,8 @@
                                     <tr>
                                         <td class="bg-t2">
                                             <div class="tieude">
-                                                <span id="ctl00_ContentPlaceHolder1_LabelTieuDeCategory"><a href="/">Trang chủ</a> &raquo; <a
-                                                            href="/thong-bao.aspx" title="Bảng tin - Thông báo">Bảng tin - Thông báo</a></span>
+                                                <span id="ctl00_ContentPlaceHolder1_LabelTieuDeCategory"><a href="index.php">Trang chủ</a> &raquo; <a
+                                                            href="" title="Bảng tin - Thông báo">Bảng tin - Thông báo</a></span>
                                             </div>
                                             <br/>
                                             <script type="text/javascript">
@@ -214,7 +216,7 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div class="Head-News"><a
-                                                                            href="/thong-bao-quan-trong!-cac-cong-thong-tin-chinh-thuc-cua-nha-truong_v757.aspx">
+                                                                            href="">
                                                                         <h2>Thông báo quan trọng! Các cổng thông tin
                                                                             chính thức của nhà trường</h2></a></div>
                                                                 <div class="Body-News">&nbsp;C&aacute;c cựu học sinh gi&uacute;p
@@ -234,7 +236,7 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div class="Head-News"><a
-                                                                            href="/phat-dong-cuoc-thi-thiet-ke-logo-truong-thpt-chuyen-dhsp-va-logo-le-ki-niem-55-nam-thanh-lap-truong_v702.aspx">
+                                                                            href="">
                                                                         <h2>Phát động cuộc thi Thiết kế Logo trường THPT
                                                                             Chuyên ĐHSP và logo lễ kỉ niệm 55 năm thành
                                                                             lập trường</h2></a></div>
@@ -248,14 +250,14 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div style="width:140px;float:left;"><a
-                                                                            href="/van-ban-huong-dan-thuc-hien-dieu-chinh-noi-dung-day-hoc-hoc-ky-ii-nam-hoc-2019-2020_v584.aspx"><img
+                                                                            href=""><img
                                                                                 src="../Images/Thumb_24.jpg"
                                                                                 class="img-news"
                                                                                 alt="Văn bản hướng dẫn thực hiện điều chỉnh nội dung dạy học học kỳ II năm học 2019-2020"/></a>
                                                                 </div>
                                                                 <div style="width:370px;float:right;">
                                                                     <div class="Head-News"><a
-                                                                                href="/van-ban-huong-dan-thuc-hien-dieu-chinh-noi-dung-day-hoc-hoc-ky-ii-nam-hoc-2019-2020_v584.aspx">
+                                                                                href="">
                                                                             <h2>Văn bản hướng dẫn thực hiện điều chỉnh
                                                                                 nội dung dạy học học kỳ II năm học
                                                                                 2019-2020</h2></a></div>
@@ -263,7 +265,7 @@
 
                                                                         Nội dung điều chỉnh từng m&ocirc;n học được Bộ
                                                                         GD&amp;ĐT đưa ra ở đường dẫn sau
-                                                                        Link:&nbsp;https://drive.google.com/drive/folders/1JA137ERiOK1H4NszGRMUgJ8B0GMgnbfT
+
 
 
                                                                     </div>
@@ -276,14 +278,14 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div style="width:140px;float:left;"><a
-                                                                            href="/thay-doi-lich-thi-hoc-bong-astar-2019_v577.aspx"><img
+                                                                            href=""><img
                                                                                 src="../Images/Thumb_Thumb_est_thong-tin-hoc-bong-astar-2019.jpg"
                                                                                 class="img-news"
                                                                                 alt="Thay đổi lịch thi học bổng Astar 2019"/></a>
                                                                 </div>
                                                                 <div style="width:370px;float:right;">
                                                                     <div class="Head-News"><a
-                                                                                href="/thay-doi-lich-thi-hoc-bong-astar-2019_v577.aspx">
+                                                                                href="">
                                                                             <h2>Thay đổi lịch thi học bổng Astar
                                                                                 2019</h2></a></div>
                                                                     <div class="Body-News">&nbsp;Lịch thi học bổng&nbsp;Astar
@@ -310,14 +312,14 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div style="width:140px;float:left;"><a
-                                                                            href="/lich-kham-suc-khoe-cho-hoc-sinh-khoi-10-k53_v575.aspx"><img
+                                                                            href=""><img
                                                                                 src="../Images/Thumb_pngtree-vector-health-icon-png-image_319656.jpg"
                                                                                 class="img-news"
                                                                                 alt="Lịch khám sức khỏe cho học sinh khối 10 K53"/></a>
                                                                 </div>
                                                                 <div style="width:370px;float:right;">
                                                                     <div class="Head-News"><a
-                                                                                href="/lich-kham-suc-khoe-cho-hoc-sinh-khoi-10-k53_v575.aspx">
+                                                                                href="">
                                                                             <h2>Lịch khám sức khỏe cho học sinh khối 10
                                                                                 K53</h2></a></div>
                                                                     <div class="Body-News">&nbsp;Được sự đồng &yacute;
@@ -337,14 +339,14 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div style="width:140px;float:left;"><a
-                                                                            href="/thong-bao-mo-lop-8-va-9-tao-nguon-nam-2019_v574.aspx"><img
+                                                                            href=""><img
                                                                                 src="../Images/Thumb_THONG%20BAO.png"
                                                                                 class="img-news"
                                                                                 alt="THÔNG BÁO MỞ LỚP 8 VÀ 9 TẠO NGUỒN NĂM 2019"/></a>
                                                                 </div>
                                                                 <div style="width:370px;float:right;">
                                                                     <div class="Head-News"><a
-                                                                                href="/thong-bao-mo-lop-8-va-9-tao-nguon-nam-2019_v574.aspx">
+                                                                                href="">
                                                                             <h2>THÔNG BÁO MỞ LỚP 8 VÀ 9 TẠO NGUỒN NĂM
                                                                                 2019</h2></a></div>
                                                                     <div class="Body-News">&nbsp;&nbsp;
@@ -367,14 +369,14 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div style="width:140px;float:left;"><a
-                                                                            href="/buoi-noi-chuyen-ve-ramsey-theory-cua-pgsts-le-thai-hoang-cuu-hoc-sinh-chuyen-su-pham-huy-chuong-vang-imo-1999-voi-hoc-sinh-chuyen-toan_v511.aspx"><img
+                                                                            href=""><img
                                                                                 src="../Images/Thumb_Thai-Hoang-Le-Photo.jpg"
                                                                                 class="img-news"
                                                                                 alt="Buổi nói chuyện về Ramsey Theory của PGS.TS. Lê Thái Hoàng, cựu học sinh Chuyên Sư phạm, Huy chương vàng IMO 1999, với học sinh chuyên Toán"/></a>
                                                                 </div>
                                                                 <div style="width:370px;float:right;">
                                                                     <div class="Head-News"><a
-                                                                                href="/buoi-noi-chuyen-ve-ramsey-theory-cua-pgsts-le-thai-hoang-cuu-hoc-sinh-chuyen-su-pham-huy-chuong-vang-imo-1999-voi-hoc-sinh-chuyen-toan_v511.aspx">
+                                                                                href="">
                                                                             <h2>Buổi nói chuyện về Ramsey Theory của
                                                                                 PGS.TS. Lê Thái Hoàng, cựu học sinh
                                                                                 Chuyên Sư phạm, Huy chương vàng IMO
@@ -397,14 +399,14 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div style="width:140px;float:left;"><a
-                                                                            href="/danh-sach-hoc-sinh-csp-nhan-hoc-bong-odon-valet-2017_v496.aspx"><img
+                                                                            href=""><img
                                                                                 src="../Images/Thumb_Odon%20valet.jpg"
                                                                                 class="img-news"
                                                                                 alt="Danh sách học sinh CSP nhận học bổng ODON VALET 2017"/></a>
                                                                 </div>
                                                                 <div style="width:370px;float:right;">
                                                                     <div class="Head-News"><a
-                                                                                href="/danh-sach-hoc-sinh-csp-nhan-hoc-bong-odon-valet-2017_v496.aspx">
+                                                                                href="">
                                                                             <h2>Danh sách học sinh CSP nhận học bổng
                                                                                 ODON VALET 2017</h2></a></div>
                                                                     <div class="Body-News"></div>
@@ -417,7 +419,7 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div class="Head-News"><a
-                                                                            href="/mau-danh-sach-hsg-va-hstt-nam-hoc-2016-2017_v431.aspx">
+                                                                            href="">
                                                                         <h2>Mẫu danh sách HSG và HSTT năm học
                                                                             2016-2017</h2></a></div>
                                                                 <div class="Body-News">Ph&iacute;a dưới l&agrave; đường
@@ -437,7 +439,7 @@
                                                         <td>
                                                             <div style="width:100%; height:auto;padding:0;">
                                                                 <div class="Head-News"><a
-                                                                            href="/danh-sach-trung-tuyen-tntn-2017_v488.aspx">
+                                                                            href="">
                                                                         <h2>Danh sách trúng tuyển TNTN 2017</h2></a>
                                                                 </div>
                                                                 <div class="Body-News">Sau một buổi chiều l&agrave;m
@@ -1419,7 +1421,7 @@
                 <td class="menu-f">
                 <span id="ctl00_LabelMenuFoot"><div id="ddtopmenubar" class="mattblackmenu2">
 <ul>
-<li class="End"><a href="/" title="Trang chủ">Trang chủ</a></li>
+<li class="End"><a href="index.php" title="Trang chủ">Trang chủ</a></li>
 <li><a href="/gioi-thieu_g0.aspx" title="Giới thiệu">Giới thiệu</a></li>
 <li><a href="/lich-tuan.aspx" title="Lịch tuần">Lịch tuần</a></li>
 <li><a href="/tai-lieu.aspx" title="Tài liệu tham khảo">Tài liệu tham khảo</a></li>
