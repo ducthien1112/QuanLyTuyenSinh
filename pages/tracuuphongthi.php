@@ -179,21 +179,37 @@ include "../connectdb.php";
                                         <th class="bang">Giới tính</th>
                                         <th class="bang">Phòng thi văn</th>
                                         <th class="bang">Phòng thi toán</th>
-                                        <th class="bang">Phòng thi chuyên</th> 
-                                    </tr>
+                                    
 
                                 <?php
-                                function getTenMon($id_phong)
+                                function getPhongthi($id_phong)
                                 {
                                     GLOBAL $conn;
-                                    $tenMon = '';
+                                    $tenPhong = '';
+                                    $thoigian='';
                                     $sql = "SELECT * FROM phong_thi WHERE id_phong_thi = '$id_phong'";
                                     $result = mysqli_query($conn, $sql);
                                     if(mysqli_num_rows($result) > 0){
-                                        $tenMon = mysqli_fetch_array($result)['ten_phong'];
+                                        while ($row = mysqli_fetch_assoc($result)) 
+                                            {
+                                                 $tenPhong = $row['ten_phong'];
+                                                 $thoigian = $row['thoi_gian_thi'];
+                                            }
+                                       
                                     }
-                                    return $tenMon;
+                                    return 'Phòng: '.$tenPhong .' '.'<br>Thời gian: '.$thoigian;
                                 }
+                                 function getTenMon($id_Phong)
+                                    {
+                                        GLOBAL $conn;
+                                        $tenMon = '';
+                                        $sql = "SELECT * FROM `phong_thi` INNER JOIN mon ON phong_thi.id_mon = mon.id_mon WHERE phong_thi.id_phong_thi = '$id_Phong'";
+                                        $result = mysqli_query($conn, $sql);
+                                        if(mysqli_num_rows($result) > 0){
+                                            $tenMon = mysqli_fetch_array($result)['ten_mon'];
+                                        }
+                                        return 'Phòng thi chuyên '.$tenMon;
+                                    }
                                 if (isset($_POST['gui'])) 
                                 {
                                     if($_POST['name'] != "" && $_POST['phone'] != "")
@@ -207,6 +223,8 @@ include "../connectdb.php";
                                             {
                                                 $i++;
                                                 ?>
+                                        <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?></th> 
+                                    </tr>
                                  <tr>
                                      <td class="bang"><?php echo $i; ?></td>
                                       <td class="bang"><?php echo $row['id_hoc_sinh']; ?></td>
@@ -214,9 +232,9 @@ include "../connectdb.php";
                                         <td class="bang"><?php echo $row['phone'] ; ?></td> 
                                         <td class="bang"><?php echo $row['ngay_sinh']; ?></td>
                                           <td class="bang"><?php echo $row['gioi_tinh']; ?></td>
-                                         <td class="bang"><?php echo getTenMon($row['id_phong_thi_van']) ; ?></td> 
-                                         <td class="bang"><?php echo getTenMon($row['id_phong_thi_toan']) ; ?></td>
-                                         <td class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']) ; ?></td> 
+                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_van']) ; ?></td> 
+                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_toan']) ; ?></td>
+                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_chuyen']) ; ?></td> 
                                  </tr>
                                                     <?php 
                                             }
@@ -233,6 +251,8 @@ include "../connectdb.php";
                                             {
                                                 $i++;
                                                 ?>
+                                                    <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?></th> 
+                                    </tr>
                                  <tr>
                                      <td class="bang"><?php echo $i; ?></td>
                                       <td class="bang"><?php echo $row['id_hoc_sinh']; ?></td>
@@ -240,9 +260,9 @@ include "../connectdb.php";
                                         <td class="bang"><?php echo $row['phone'] ; ?></td> 
                                         <td class="bang"><?php echo $row['ngay_sinh']; ?></td>
                                           <td class="bang"><?php echo $row['gioi_tinh']; ?></td>
-                                         <td class="bang"><?php echo getTenMon($row['id_phong_thi_van']) ; ?></td> 
-                                         <td class="bang"><?php echo getTenMon($row['id_phong_thi_toan']) ; ?></td>
-                                         <td class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']) ; ?></td>                                       
+                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_van']) ; ?></td> 
+                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_toan']) ; ?></td>
+                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_chuyen']) ; ?></td>                                       
                                  </tr>
                                                     <?php 
                                             }
