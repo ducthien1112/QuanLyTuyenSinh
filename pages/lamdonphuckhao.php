@@ -154,8 +154,7 @@ include "../connectdb.php";
                                     <tr>
                                         <form method="post" action="">
                                             <td class="bg-t3">
-                                            <a>Số báo danh</a><input type="text" name="sbd">
-                                            <input type="submit" value="Tra cứu" name="gui">
+                                            <a>Đơn phúc khảo</a>
                                         </td>
                                         </form>
                                       
@@ -167,71 +166,133 @@ include "../connectdb.php";
                                           border:1px solid black;
                                         }
                                         </style>
-                                <table style="width:100%">
+                                <table >
+                                     <form method="post" action="">
+                                             <tr>
+                                        <th class="bang">Số báo danh<input type="text" name="sbd"></th>
+                                    </tr>
                                     <tr>
-                                        <th class="bang">STT</th>
-                                        <th class="bang">SBD</th>
-                                        <th class="bang">Họ và tên</th>
-                                        <th class="bang">Ngày sinh</th>
-                                        <th class="bang">Giới tính</th>
-                                        <th class="bang">Số điện thoại</th>
-                                        <th class="bang">Văn</th>
-                                        <th class="bang">Toán</th>
-                                <?php
-                                    function getTenMon($id_Phong)
+                                        <th class="bang" >Họ và tên<input type="text"name="hoten"></th>
+                                    </tr>
+                                     <tr>
+                                        <th class="bang">Ngày sinh<input type="date"></th>
+                                    </tr>
+                                    <tr>
+                                        <th class="bang" >Số điện thoại<input type="text" name="phone"></th>
+                                    </tr>
+                                    <tr>
+                                        <th class="bang" >Môn phúc khảo<select id="cars" name="mon">
+                                          <option value="toan">Toán</option>
+                                          <option value="van">Văn</option>
+                                          <option value="chuyen" selected>Môn chuyên</option>
+                                        </select></th>
+                                    </tr>                             
+                                </table>
+                          <input type="submit" value="Nộp đơn" name="gui">
+                                    </form>
+                            </td>
+                        </tr>
+                        <?php
+                             function getIdMon($id_Phong)
                                     {
                                         GLOBAL $conn;
-                                        $tenMon = '';
-                                        $sql = "SELECT * FROM `phong_thi` INNER JOIN mon ON phong_thi.id_mon = mon.id_mon WHERE phong_thi.id_phong_thi = '$id_Phong'";
+                                        $idMon = '';
+                                        $sql = "SELECT * FROM `phong_thi` WHERE phong_thi.id_phong_thi = '$id_Phong'";
                                         $result = mysqli_query($conn, $sql);
                                         if(mysqli_num_rows($result) > 0){
-                                            $tenMon = mysqli_fetch_array($result)['ten_mon'];
+                                            $idMon = mysqli_fetch_array($result)['id_mon'];
                                         }
-                                        return 'Điểm chuyên '.$tenMon;
+                                        return $idMon;
                                     }
-                                   if (isset($_POST['gui'])) 
+                            if (isset($_POST['gui'])) 
+                            {
+                                $sbd="";
+                                $id_phong="";
+                                $hoten="";
+                                $idmon="";
+                                $diemhientai="";
+                                $flag=0;
+                                if(/*$_POST['hoten'] != "" && $_POST['phone'] != ""&& */$_POST['sbd']!="")
                                 {
-                                    $sbd="";
-                                    $sql = "SELECT * FROM `diem` INNER JOIN hoc_sinh on sbd = hoc_sinh.id_hoc_sinh WHERE sbd = '$_POST[sbd]';";
-                                    $do = mysqli_query($conn, $sql); 
-                                    if ($_POST['sbd'] != "") 
+                                    if($_POST['mon']=='toan')
                                     {
-                                        $i=0;
-                                        if (mysqli_num_rows($do) > 0) 
+                                    $sql = "SELECT * FROM hoc_sinh INNER JOIN diem ON hoc_sinh.id_hoc_sinh = diem.sbd WHERE id_hoc_sinh = '$_POST[sbd]';";
+                                    $do = mysqli_query($conn, $sql);
+                                      if (mysqli_num_rows($do) > 0) 
                                         {
                                             while ($row = mysqli_fetch_assoc($do)) 
                                             {
-                                                $i++;
-                                                ?>
-                                        <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?></th>
-                                    </tr>
-                                 <tr>
-                                     <td class="bang"><?php echo $i; ?></td>
-                                      <td class="bang"><?php echo $row['id_hoc_sinh']; ?></td>
-                                       <td class="bang"><?php echo $row['ten']; ?></td>
-                                        <td class="bang"><?php echo $row['ngay_sinh']; ?></td>
-                                          <td class="bang"><?php echo $row['gioi_tinh']; ?></td>
-                                         <td class="bang"><?php echo $row['phone']; ?></td>
-                                         <td class="bang"><?php echo $row['diem_van']; ?></td>
-                                         <td class="bang"><?php echo $row['diem_toan']; ?></td>
-                                         <td class="bang"><?php echo $row['diem_chuyen']; ?></td>
-                                 </tr>
-                                                    <?php 
+                                                $sbd = $row['id_hoc_sinh'];
+                                                $id_phong =$row['id_phong_thi_toan'];
+                                                $hoten = $row['ten'];
+                                                $idmon = getIdMon($row['id_phong_thi_toan']);
+                                                $diemhientai = $row['diem_toan'];
                                             }
                                         }
                                     }
-                                    else
+                                    else if($_POST['mon']=='van')
                                     {
-                                        echo "Vui lòng nhập thông tin số báo danh";
+                                    $sql = "SELECT * FROM hoc_sinh INNER JOIN diem ON hoc_sinh.id_hoc_sinh = diem.sbd WHERE id_hoc_sinh = '$_POST[sbd]';";
+                                    $do = mysqli_query($conn, $sql);
+                                      if (mysqli_num_rows($do) > 0) 
+                                        {
+                                            while ($row = mysqli_fetch_assoc($do)) 
+                                            {
+                                                $sbd = $row['id_hoc_sinh'];
+                                                $id_phong =$row['id_phong_thi_van'];
+                                                $hoten = $row['ten'];
+                                                $idmon = getIdMon($row['id_phong_thi_van']);
+                                                $diemhientai = $row['diem_van'];
+                                            }
+                                        }
                                     }
-                                     $conn->close();
+                                     else if($_POST['mon']=='chuyen')
+                                    {
+                                    $sql = "SELECT * FROM hoc_sinh INNER JOIN diem ON hoc_sinh.id_hoc_sinh = diem.sbd WHERE id_hoc_sinh = '$_POST[sbd]';";
+                                    $do = mysqli_query($conn, $sql);
+                                      if (mysqli_num_rows($do) > 0) 
+                                        {
+                                            while ($row = mysqli_fetch_assoc($do)) 
+                                            {
+                                                $sbd = $row['id_hoc_sinh'];
+                                                $id_phong =$row['id_phong_thi_chuyen'];
+                                                $hoten = $row['ten'];
+                                                $idmon = getIdMon($row['id_phong_thi_chuyen']);
+                                                $diemhientai = $row['diem_chuyen'];
+                                            }
+                                        }
                                     }
+                                       $sql = "SELECT * FROM don_phuc_khao WHERE sbd = '$sbd' AND id_mon = '$idmon';";
+                                       $do = mysqli_query($conn, $sql);
+                                     if (mysqli_num_rows($do) > 0) 
+                                        {
+                                            while ($row = mysqli_fetch_assoc($do)) 
+                                            {
+                                              $flag++;
+                                            }
+                                        }
+                                        if($flag>0)
+                                        {
+                                            $sql = "INSERT INTO don_phuc_khao VALUES('$sbd','$id_phong','$hoten','$idmon','$diemhientai',0);";
+                                             if ($conn->query($sql) === TRUE) 
+                                             {
+                                              echo "New record created successfully";
+                                             } 
+                                            else {
+                                              echo "Error: " . $sql . "<br>" . $conn->error;
+                                            }
+                                        }
+                                        else{
+                                            echo"Bạn đã yêu cầu phúc khảo môn này rồi!";
+                                        }
+                                 $conn->close();
                                 }
-                             ?>
-                                </table>
-                       
-                            </td>
-                        </tr>
+                                else
+                                {
+                                    echo "Vui lòng nhập đầy đủ thông tin!";
+                                }
+                            }
+                        ?>
                     </table>
 
                 </td>

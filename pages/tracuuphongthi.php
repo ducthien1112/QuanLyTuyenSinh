@@ -210,7 +210,7 @@ include "../connectdb.php";
                                     }
                                     if (isset($_POST['gui'])) 
                                 {
-                                    if($_POST['name'] != "" && $_POST['phone'] != "")
+                                    if($_POST['name'] != "" && $_POST['phone'] != "" )
                                     {
                                     $sql = "SELECT * FROM `hoc_sinh` WHERE `ten` = '$_POST[name]' AND `phone`= '$_POST[phone]'";
                                         $do = mysqli_query($conn, $sql);
@@ -265,6 +265,9 @@ include "../connectdb.php";
                                                     <?php 
                                             }
                                         }
+                                    }
+                                    elseif ($_POST['name'] == "" && $_POST['phone'] == "") {
+                                       echo "Vui lòng nhập đầy đủ thông tin!";
                                     }
                                      $conn->close();
                                 }
