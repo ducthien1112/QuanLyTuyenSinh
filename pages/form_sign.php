@@ -28,7 +28,10 @@ if (isset($_POST['btndangky']) == true) {
     $monchuyen = $_POST['monchuyen'];
     $truong_thcs = $_POST['thcs'];
     $sdt = $_POST['phone'];
-
+    $img = $_FILES['img-duthi']['name'];
+    $target_dir = "uploads/";
+    $target_file = $target_dir .$img;
+    move_uploaded_file($_FILES ["img-duthi"]["tmp-name"], $target_file);
 //        echo "$hoten, $gioitinh, $monchuyen, $dantoc, $hokhau, $ngaysinh, $noisinh, $sdt, $truong_thcs";
 
     if (strlen($hoten) == 0 || strlen($ngaysinh) ==0 || strlen($truong_thcs) ==0  || strlen($dantoc) ==0
@@ -51,7 +54,7 @@ if (isset($_POST['btndangky']) == true) {
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<form style="width: 600px" class="border border-primary border-2 m-auto p-2" method="post">
+<form style="width: 600px" class="border border-primary border-2 m-auto p-2" method="post" enctype="multipart/form-data">
     <?php if ( $loi != "" && $loi != "validate success" ) { ?>
         <div class="alert alert-danger"> <?php echo $loi ?> </div>
     <?php
@@ -118,7 +121,7 @@ if (isset($_POST['btndangky']) == true) {
     <div class="mb-3">
         <div>Ảnh dự thi</div>
         <div class="input-group mb-3">
-            <input type="file" class="form-control" id="inputGroupFile01">
+            <input type="file" class="form-control" id="inputGroupFile01" name="img-duthi">
         </div>
     </div>
 
