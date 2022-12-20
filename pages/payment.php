@@ -16,7 +16,9 @@ $msgError = false;
 $info = [];
 if (isset($_POST['btnTraCuu'])) {
     if ($_POST['name'] != "" && $_POST['phone'] != "" && $_POST['birthday'] != ""  && check_valid($_POST['name'],$_POST['phone'], $_POST['birthday'])) {
+        
         $qr_code = 'https://img.vietqr.io/image/970423-89816092001-G3pavAY.jpg?accountName=NGUYEN+DINH+HIEU&amount=350000&addInfo='.$_POST['name'].'+'.$_POST['phone'];
+
         $info = [
             'name' => $_POST['name'],
             'phone' => $_POST['phone'],
