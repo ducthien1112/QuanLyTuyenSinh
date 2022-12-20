@@ -147,6 +147,8 @@
 <li><a href="" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
 <li><a href="" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
     <li><a href="form_sign.php" title="Form đăng ký ">Đăng ký dự thi </a></li>
+    <li><a href="" title="Thanh toán lệ phí">Thanh toán lệ phí</a></li>
+
 
 </div>
 </span>
