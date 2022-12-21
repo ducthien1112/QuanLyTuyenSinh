@@ -40,7 +40,8 @@
 	        
 	        
 	        // Cất dữ liệu thông tin danh sách phòng thi 
-	        insertSapXepDanhSachPhongThi($listHoSo);
+	        $listHoSo = insertSapXepDanhSachPhongThi($listHoSo);
+	        insertDanhSachDiem($listHoSo);
 	        $trangThaiSapXepPhong = true;
 	        $msg_SapXep = true;
 	    }
@@ -160,6 +161,7 @@
             ++$sbd;
             $sbd_db = str_pad($sbd, 4, '0', STR_PAD_LEFT);
             
+            $listHoSo[$key]['sbd'] = $sbd_db;
             $ten = $hoSo['ten'];
             $phone = $hoSo['phone'];
             $ngay_sinh = $hoSo['ngay_sinh'];
@@ -171,6 +173,7 @@
             $sql = "INSERT INTO `hoc_sinh`(`id_hoc_sinh`, `ten`, `phone`, `ngay_sinh`, `gioi_tinh`, `id_phong_thi_van`, `id_ho_so`, `id_phong_thi_toan`, `id_phong_thi_chuyen`) VALUES ('$sbd_db','$ten','$phone','$ngay_sinh','$gioi_tinh','$id_phong_thi_van','$id_ho_so','$id_phong_thi_toan','$id_phong_thi_chuyen')";
             mysqli_query($conn, $sql);
         }
+        return $listHoSo;
 	}
 
 	function checkEndTimeCongDK(){
@@ -217,6 +220,16 @@
             ];
         }
         return $listPhongThi;
+	}
+
+	function insertDanhSachDiem($listHoSo)
+	{
+		GLOBAL $conn;
+        foreach ($listHoSo as $key => $hoSo) {
+        	$sbd = $hoSo['sbd'];
+            $sql = "INSERT INTO `diem`(`sbd`, `diem_toan`, `diem_van`, `diem_chuyen`) VALUES ('$sbd', null, null, null)";
+            mysqli_query($conn, $sql);
+        }
 	}
 
  ?>
