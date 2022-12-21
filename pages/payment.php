@@ -17,7 +17,7 @@ $info = [];
 if (isset($_POST['btnTraCuu'])) {
     if ($_POST['name'] != "" && $_POST['phone'] != "" && $_POST['birthday'] != ""  && check_valid($_POST['name'],$_POST['phone'], $_POST['birthday'])) {
         
-        $qr_code = 'https://img.vietqr.io/image/970423-89816092001-G3pavAY.jpg?accountName=NGUYEN+DINH+HIEU&amount=350000&addInfo='.$_POST['name'].'+'.$_POST['phone'];
+        $qr_code = 'https://img.vietqr.io/image/970423-89816092001-G3pavAY.jpg?accountName=NGUYEN+DINH+HIEU&amount=350000&addInfo='.$_POST['name'].'+'.$_POST['phone'].'+'.$_POST['birthday'];
 
         $info = [
             'name' => $_POST['name'],
@@ -125,10 +125,12 @@ if (isset($_POST['btnTraCuu'])) {
 </div>
 <div id="ddsubmenu3" class="ddsubmenustyle">
 <li><a href="" title="Thời khóa biểu học sinh">Thời khóa biểu học sinh</a></li>
-<li><a href="" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
-<li><a href="" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
-<li><a href="" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+<li><a href="content.php" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
+<li><a href="tracuuphongthi.php" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
+<li><a href="tracuuphongthi.php" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
     <li><a href="form_sign.php" title="Đăng ký dự thi">Đăng ký dự thi</a></li>
+    <li><a href="payment.php" title="Thanh toán lệ phí">Thanh toán lệ phí</a></li>
+
 
 </div>
 </span>
