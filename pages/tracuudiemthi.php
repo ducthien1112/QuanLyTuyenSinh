@@ -36,8 +36,6 @@ include "../connectdb.php";
         }
         //]]>
     </script>
-
-
     <script src="/WebResource.axd?d=B9d5BfrBx6qbQK4g5vCWMa0wgZPD6BgZpvZxUGDtJgTOLK9AQ9bjWkWNC6fl5RkwNUCCQHrjXeGRYE1Z9V6745MSqtw1&amp;t=637814912020000000" type="text/javascript"></script>
 
 
@@ -219,14 +217,18 @@ include "../connectdb.php";
                                                     <?php 
                                             }
                                         }
+                                        else
+                                        {
+                                             echo "Số báo danh này không tồn tại";
+                                        }
                                     }
                                     else
                                     {
-                                        echo "Vui lòng nhập thông tin số báo danh";
+                                        echo "Vui lòng nhập số báo danh";
                                     }
                                      $conn->close();
-                                    }
                                 }
+
                              ?>
                                 </table>
                        

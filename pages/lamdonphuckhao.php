@@ -212,7 +212,7 @@ include "../connectdb.php";
                                 $idmon="";
                                 $diemhientai="";
                                 $flag=0;
-                                if(/*$_POST['hoten'] != "" && $_POST['phone'] != ""&& */$_POST['sbd']!="")
+                                if($_POST['hoten'] != "" && $_POST['phone'] != ""&& $_POST['sbd']!="")
                                 {
                                     if($_POST['mon']=='toan')
                                     {
@@ -228,6 +228,10 @@ include "../connectdb.php";
                                                 $idmon = getIdMon($row['id_phong_thi_toan']);
                                                 $diemhientai = $row['diem_toan'];
                                             }
+                                        }
+                                        else
+                                        {
+                                            echo "Thông tin học sinh không chính xác";
                                         }
                                     }
                                     else if($_POST['mon']=='van')
@@ -245,6 +249,10 @@ include "../connectdb.php";
                                                 $diemhientai = $row['diem_van'];
                                             }
                                         }
+                                        else
+                                        {
+                                            echo "Thông tin học sinh không chính xác";
+                                        }
                                     }
                                      else if($_POST['mon']=='chuyen')
                                     {
@@ -261,6 +269,10 @@ include "../connectdb.php";
                                                 $diemhientai = $row['diem_chuyen'];
                                             }
                                         }
+                                         else
+                                        {
+                                            echo "Thông tin học sinh không chính xác";
+                                        }
                                     }
                                        $sql = "SELECT * FROM don_phuc_khao WHERE sbd = '$sbd' AND id_mon = '$idmon';";
                                        $do = mysqli_query($conn, $sql);
@@ -271,12 +283,12 @@ include "../connectdb.php";
                                               $flag++;
                                             }
                                         }
-                                        if($flag>0)
+                                        if($flag==0)
                                         {
                                             $sql = "INSERT INTO don_phuc_khao VALUES('$sbd','$id_phong','$hoten','$idmon','$diemhientai',0);";
                                              if ($conn->query($sql) === TRUE) 
                                              {
-                                              echo "New record created successfully";
+                                              echo "Đăng ký phúc khảo thành công";
                                              } 
                                             else {
                                               echo "Error: " . $sql . "<br>" . $conn->error;
