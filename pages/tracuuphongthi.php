@@ -166,19 +166,10 @@ include "../connectdb.php";
                                 <style>
                                         .bang
                                         {
-                                          border:1px solid black;
+                                          text-align: left;
                                         }
                                         </style>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th class="bang">STT</th>
-                                        <th class="bang">SBD</th>
-                                        <th class="bang">Họ và tên</th>
-                                        <th class="bang">Số điện thoại</th>
-                                        <th class="bang">Ngày sinh</th>
-                                        <th class="bang">Giới tính</th>
-                                        <th class="bang">Phòng thi văn</th>
-                                        <th class="bang">Phòng thi toán</th>
+                                <table style="width:40%; border:1px solid black; margin-top:10px;" >
                                 <?php
                                  function getPhongthi($id_phong)
                                 {
@@ -210,63 +201,47 @@ include "../connectdb.php";
                                     }
                                     if (isset($_POST['gui'])) 
                                 {
-                                    if($_POST['name'] != "" && $_POST['phone'] != "" )
+                                    if($_POST['name'] != "" && $_POST['phone'] != "" && $_POST['birth']!="")
                                     {
-                                    $sql = "SELECT * FROM `hoc_sinh` WHERE `ten` = '$_POST[name]' AND `phone`= '$_POST[phone]'";
-                                        $do = mysqli_query($conn, $sql);
-                                        $i=0;
-                                        if (mysqli_num_rows($do) > 0) 
-                                        {
-                                            while ($row = mysqli_fetch_assoc($do)) 
-                                            {
-                                                $i++;
-                                                ?>
-                                         <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?></th> 
-                                    </tr>
-                                 <tr>
-                                     <td class="bang"><?php echo $i; ?></td>
-                                      <td class="bang"><?php echo $row['id_hoc_sinh']; ?></td>
-                                       <td class="bang"><?php echo $row['ten']; ?></td>
-                                        <td class="bang"><?php echo $row['phone'] ; ?></td> 
-                                        <td class="bang"><?php echo $row['ngay_sinh']; ?></td>
-                                          <td class="bang"><?php echo $row['gioi_tinh']; ?></td>
-                                              <td class="bang"><?php echo getPhongthi($row['id_phong_thi_van']) ; ?></td> 
-                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_toan']) ; ?></td>
-                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_chuyen']) ; ?></td>
-                                 </tr>
-                                                    <?php 
-                                            }
-                                        }
-                                    }
-                                       else if ($_POST['name'] != "" || $_POST['phone'] != "") 
-                                    {
-                                        $i=0;
-                                         $sql = "SELECT * FROM `hoc_sinh` WHERE `ten` = '$_POST[name]' or`phone`= '$_POST[phone]'";
+                                    $sql = "SELECT * FROM `hoc_sinh` WHERE `ten` = '$_POST[name]' AND `ngay_sinh`= '$_POST[birth]' AND `phone`= '$_POST[phone]'";
                                         $do = mysqli_query($conn, $sql);
                                         if (mysqli_num_rows($do) > 0) 
                                         {
                                             while ($row = mysqli_fetch_assoc($do)) 
                                             {
-                                                $i++;
                                                 ?>
-                                         <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?></th> 
+                                            <tr>
+                                        <th class="bang">SBD: <b style="color:green;"><?php echo $row['id_hoc_sinh']; ?></b></th>
+                                        </tr>
+                                            <tr>
+                                          <th class="bang">Họ và tên: <b style="color:green;"><?php echo $row['ten']; ?></b></th>
+                                        </tr>
+                                            <tr>
+                                        <th class="bang">Số điện thoại: <b style="color:green;"><?php echo $row['phone'] ; ?></b></th>
+                                        </tr>
+                                            <tr>
+                                        <th class="bang">Ngày sinh: <b style="color:green;"><?php echo $row['ngay_sinh']; ?></b></th>
+                                        </tr>
+                                            <tr>
+                                        <th class="bang">Giới tính: <b style="color:green;"><?php echo $row['gioi_tinh']; ?></b></th>
+                                        </tr>
+                                            <tr>
+                                        <th class="bang">Phòng thi văn: <b style="color:green;"><?php echo getPhongthi($row['id_phong_thi_van']) ; ?></b> </th>
+                                        </tr>
+                                           <tr>
+                                        <th class="bang">Phòng thi toán: <b style="color:green;"><?php echo getPhongthi($row['id_phong_thi_toan']) ; ?></b></th>
+                                        </tr>
+                                         <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?>: <b style="color:green;"><?php echo getPhongthi($row['id_phong_thi_chuyen']) ; ?></b></th> 
                                     </tr>
-                                 <tr>
-                                     <td class="bang"><?php echo $i; ?></td>
-                                      <td class="bang"><?php echo $row['id_hoc_sinh']; ?></td>
-                                       <td class="bang"><?php echo $row['ten']; ?></td>
-                                        <td class="bang"><?php echo $row['phone'] ; ?></td> 
-                                        <td class="bang"><?php echo $row['ngay_sinh']; ?></td>
-                                          <td class="bang"><?php echo $row['gioi_tinh']; ?></td>
-                                        <td class="bang"><?php echo getPhongthi($row['id_phong_thi_van']) ; ?></td> 
-                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_toan']) ; ?></td>
-                                         <td class="bang"><?php echo getPhongthi($row['id_phong_thi_chuyen']) ; ?></td>                                       
-                                 </tr>
                                                     <?php 
                                             }
                                         }
+                                        else
+                                        {
+                                            echo "Thí sinh này không tồn tại";
+                                        }
                                     }
-                                    elseif ($_POST['name'] == "" && $_POST['phone'] == "") {
+                                    elseif ($_POST['name'] == "" || $_POST['phone'] == ""|| $_POST['birth']=="") {
                                        echo "Vui lòng nhập đầy đủ thông tin!";
                                     }
                                      $conn->close();
