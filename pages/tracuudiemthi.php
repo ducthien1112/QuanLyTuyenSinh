@@ -162,19 +162,12 @@ include "../connectdb.php";
                                 <style>
                                         .bang
                                         {
-                                          border:1px solid black;
+                                          text-align: left;
+                                         
                                         }
                                         </style>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th class="bang">STT</th>
-                                        <th class="bang">SBD</th>
-                                        <th class="bang">Họ và tên</th>
-                                        <th class="bang">Ngày sinh</th>
-                                        <th class="bang">Giới tính</th>
-                                        <th class="bang">Số điện thoại</th>
-                                        <th class="bang">Văn</th>
-                                        <th class="bang">Toán</th>
+                                <table style="width:30%;border:1px solid black; margin-top:10px">
+                           
                                 <?php
                                     function getTenMon($id_Phong)
                                     {
@@ -194,26 +187,35 @@ include "../connectdb.php";
                                     $do = mysqli_query($conn, $sql); 
                                     if ($_POST['sbd'] != "") 
                                     {
-                                        $i=0;
                                         if (mysqli_num_rows($do) > 0) 
                                         {
                                             while ($row = mysqli_fetch_assoc($do)) 
                                             {
-                                                $i++;
                                                 ?>
-                                        <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?></th>
+                                     <tr>
+                                       <th class="bang">SBD: <a style=" color: blue;"><?php echo $row['id_hoc_sinh']; ?></a></th>
                                     </tr>
-                                 <tr>
-                                     <td class="bang"><?php echo $i; ?></td>
-                                      <td class="bang"><?php echo $row['id_hoc_sinh']; ?></td>
-                                       <td class="bang"><?php echo $row['ten']; ?></td>
-                                        <td class="bang"><?php echo $row['ngay_sinh']; ?></td>
-                                          <td class="bang"><?php echo $row['gioi_tinh']; ?></td>
-                                         <td class="bang"><?php echo $row['phone']; ?></td>
-                                         <td class="bang"><?php echo $row['diem_van']; ?></td>
-                                         <td class="bang"><?php echo $row['diem_toan']; ?></td>
-                                         <td class="bang"><?php echo $row['diem_chuyen']; ?></td>
-                                 </tr>
+                                     <tr>
+                                       <th class="bang">Họ và tên: <a style=" color: blue;"><?php echo $row['ten']; ?></a></th>
+                                    </tr>
+                                     <tr>
+                                        <th class="bang">Ngày sinh: <a style=" color: blue;"><?php echo $row['ngay_sinh']; ?></a></th>
+                                    </tr>
+                                     <tr>
+                                      <th class="bang">Giới tính: <a style=" color: blue;"><?php echo $row['gioi_tinh']; ?></a></th>
+                                    </tr>
+                                     <tr>
+                                       <th class="bang">Số điện thoại:<a style=" color: blue;"> <?php echo $row['phone']; ?></a></th>
+                                    </tr>
+                                    <tr>
+                                        <th class="bang">Văn: <a style=" color: blue;"><?php echo $row['diem_van']; ?></a></th>
+                                    </tr>
+                                       <tr>
+                                       <th class="bang">Toán: <a style=" color: blue;"><?php echo $row['diem_toan']; ?></a></th>
+                                    </tr>                                   
+                                     </tr>
+                                        <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?> :<a style=" color: blue;"><?php echo $row['diem_chuyen']; ?></a> </th>
+                                    </tr>
                                                     <?php 
                                             }
                                         }

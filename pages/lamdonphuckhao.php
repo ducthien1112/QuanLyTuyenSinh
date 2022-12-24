@@ -163,10 +163,10 @@ include "../connectdb.php";
                                 <style>
                                         .bang
                                         {
-                                          border:1px solid black;
+                                          text-align: left;
                                         }
                                         </style>
-                                <table >
+                                <table style="border:1px solid black;">
                                      <form method="post" action="">
                                              <tr>
                                         <th class="bang">Số báo danh<input type="text" name="sbd"></th>
@@ -175,7 +175,7 @@ include "../connectdb.php";
                                         <th class="bang" >Họ và tên<input type="text"name="hoten"></th>
                                     </tr>
                                      <tr>
-                                        <th class="bang">Ngày sinh<input type="date"></th>
+                                        <th class="bang">Ngày sinh<input type="date" name="birth"></th>
                                     </tr>
                                     <tr>
                                         <th class="bang" >Số điện thoại<input type="text" name="phone"></th>
@@ -213,10 +213,10 @@ include "../connectdb.php";
                                 $diemhientai="";
                                 $flag=0;
                                 if($_POST['hoten'] != "" && $_POST['phone'] != ""&& $_POST['sbd']!="")
-                                {
+                                { 
+                                    $sql = "SELECT * FROM hoc_sinh INNER JOIN diem ON hoc_sinh.id_hoc_sinh = diem.sbd WHERE id_hoc_sinh = '$_POST[sbd]' AND ten ='$_POST[hoten]'AND ngay_sinh ='$_POST[birth]' AND phone ='$_POST[phone]';";
                                     if($_POST['mon']=='toan')
                                     {
-                                    $sql = "SELECT * FROM hoc_sinh INNER JOIN diem ON hoc_sinh.id_hoc_sinh = diem.sbd WHERE id_hoc_sinh = '$_POST[sbd]';";
                                     $do = mysqli_query($conn, $sql);
                                       if (mysqli_num_rows($do) > 0) 
                                         {
@@ -236,7 +236,6 @@ include "../connectdb.php";
                                     }
                                     else if($_POST['mon']=='van')
                                     {
-                                    $sql = "SELECT * FROM hoc_sinh INNER JOIN diem ON hoc_sinh.id_hoc_sinh = diem.sbd WHERE id_hoc_sinh = '$_POST[sbd]';";
                                     $do = mysqli_query($conn, $sql);
                                       if (mysqli_num_rows($do) > 0) 
                                         {
@@ -256,7 +255,6 @@ include "../connectdb.php";
                                     }
                                      else if($_POST['mon']=='chuyen')
                                     {
-                                    $sql = "SELECT * FROM hoc_sinh INNER JOIN diem ON hoc_sinh.id_hoc_sinh = diem.sbd WHERE id_hoc_sinh = '$_POST[sbd]';";
                                     $do = mysqli_query($conn, $sql);
                                       if (mysqli_num_rows($do) > 0) 
                                         {
