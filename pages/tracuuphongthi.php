@@ -197,7 +197,7 @@ include "../connectdb.php";
                                         if(mysqli_num_rows($result) > 0){
                                             $tenMon = mysqli_fetch_array($result)['ten_mon'];
                                         }
-                                        return 'Phòng thi chuyên '.$tenMon;
+                                        return 'Phòng thi chuyên '.$tenMon; 
                                     }
                                     if (isset($_POST['gui'])) 
                                 {

@@ -212,89 +212,69 @@ include "../connectdb.php";
                                 $idmon="";
                                 $diemhientai="";
                                 $flag=0;
-                                if($_POST['hoten'] != "" && $_POST['phone'] != ""&& $_POST['sbd']!="")
+                                if($_POST['hoten'] != "" && $_POST['phone'] != ""&& $_POST['sbd']!="" && $_POST['birth'])
                                 { 
                                     $sql = "SELECT * FROM hoc_sinh INNER JOIN diem ON hoc_sinh.id_hoc_sinh = diem.sbd WHERE id_hoc_sinh = '$_POST[sbd]' AND ten ='$_POST[hoten]'AND ngay_sinh ='$_POST[birth]' AND phone ='$_POST[phone]';";
-                                    if($_POST['mon']=='toan')
-                                    {
+                                   
                                     $do = mysqli_query($conn, $sql);
                                       if (mysqli_num_rows($do) > 0) 
                                         {
                                             while ($row = mysqli_fetch_assoc($do)) 
-                                            {
-                                                $sbd = $row['id_hoc_sinh'];
-                                                $id_phong =$row['id_phong_thi_toan'];
-                                                $hoten = $row['ten'];
-                                                $idmon = getIdMon($row['id_phong_thi_toan']);
-                                                $diemhientai = $row['diem_toan'];
+                                            { 
+                                                if($_POST['mon']=='toan')
+                                                {
+                                                    $sbd = $row['id_hoc_sinh'];
+                                                    $id_phong =$row['id_phong_thi_toan'];
+                                                    $hoten = $row['ten'];
+                                                    $idmon = getIdMon($row['id_phong_thi_toan']);
+                                                    $diemhientai = $row['diem_toan'];
+                                                }
+                                                else if($_POST['mon']=='van')
+                                                {
+                                                    $sbd = $row['id_hoc_sinh'];
+                                                    $id_phong =$row['id_phong_thi_van'];
+                                                    $hoten = $row['ten'];
+                                                    $idmon = getIdMon($row['id_phong_thi_van']);
+                                                    $diemhientai = $row['diem_van'];
+                                                }
+                                                 else if($_POST['mon']=='chuyen')
+                                                {
+                                                    $sbd = $row['id_hoc_sinh'];
+                                                    $id_phong =$row['id_phong_thi_chuyen'];
+                                                    $hoten = $row['ten'];
+                                                    $idmon = getIdMon($row['id_phong_thi_chuyen']);
+                                                    $diemhientai = $row['diem_chuyen']; 
+                                                }
                                             }
-                                        }
-                                        else
-                                        {
-                                            echo "Thông tin học sinh không chính xác";
-                                        }
-                                    }
-                                    else if($_POST['mon']=='van')
-                                    {
-                                    $do = mysqli_query($conn, $sql);
-                                      if (mysqli_num_rows($do) > 0) 
-                                        {
-                                            while ($row = mysqli_fetch_assoc($do)) 
-                                            {
-                                                $sbd = $row['id_hoc_sinh'];
-                                                $id_phong =$row['id_phong_thi_van'];
-                                                $hoten = $row['ten'];
-                                                $idmon = getIdMon($row['id_phong_thi_van']);
-                                                $diemhientai = $row['diem_van'];
-                                            }
-                                        }
-                                        else
-                                        {
-                                            echo "Thông tin học sinh không chính xác";
-                                        }
-                                    }
-                                     else if($_POST['mon']=='chuyen')
-                                    {
-                                    $do = mysqli_query($conn, $sql);
-                                      if (mysqli_num_rows($do) > 0) 
-                                        {
-                                            while ($row = mysqli_fetch_assoc($do)) 
-                                            {
-                                                $sbd = $row['id_hoc_sinh'];
-                                                $id_phong =$row['id_phong_thi_chuyen'];
-                                                $hoten = $row['ten'];
-                                                $idmon = getIdMon($row['id_phong_thi_chuyen']);
-                                                $diemhientai = $row['diem_chuyen'];
-                                            }
-                                        }
-                                         else
-                                        {
-                                            echo "Thông tin học sinh không chính xác";
-                                        }
-                                    }
                                        $sql = "SELECT * FROM don_phuc_khao WHERE sbd = '$sbd' AND id_mon = '$idmon';";
                                        $do = mysqli_query($conn, $sql);
-                                     if (mysqli_num_rows($do) > 0) 
-                                        {
-                                            while ($row = mysqli_fetch_assoc($do)) 
+                                         if (mysqli_num_rows($do) > 0) 
                                             {
-                                              $flag++;
+                                                while ($row = mysqli_fetch_assoc($do)) 
+                                                {
+                                                  $flag++;
+                                                }
                                             }
-                                        }
-                                        if($flag==0)
-                                        {
-                                            $sql = "INSERT INTO don_phuc_khao VALUES('$sbd','$id_phong','$hoten','$idmon','$diemhientai',0);";
-                                             if ($conn->query($sql) === TRUE) 
-                                             {
-                                              echo "Đăng ký phúc khảo thành công";
-                                             } 
-                                            else {
-                                              echo "Error: " . $sql . "<br>" . $conn->error;
+                                            if($flag==0)
+                                            {
+                                                $sql = "INSERT INTO don_phuc_khao VALUES('$sbd','$id_phong','$hoten','$idmon','$diemhientai',0);";
+                                                 if ($conn->query($sql) === TRUE) 
+                                                 {?>
+                                              <b style="color: green;"> <?php echo "Đăng ký phúc khảo thành công<br> Nhà trường đã chấp nhận đơn phúc khảo của thí sinh: ".$hoten." có số báo danh: ".$sbd; ?></b>
+                                                  <?php } 
+                                                else {
+                                                  echo "Error: " . $sql . "<br>" . $conn->error;
+                                                }
                                             }
-                                        }
-                                        else{
-                                            echo"Bạn đã yêu cầu phúc khảo môn này rồi!";
-                                        }
+                                            else{?>
+                                          <b style="color: red;"><?php echo"Bạn đã yêu cầu phúc khảo môn này rồi!";?></b>
+                                          <?php }
+                                            }
+                                            else
+                                            {
+                                                echo "Thông tin học sinh không chính xác";
+                                            } 
+                                
                                  $conn->close();
                                 }
                                 else
