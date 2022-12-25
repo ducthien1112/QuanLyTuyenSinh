@@ -1,4 +1,25 @@
 <?php 
+
+     /**
+     * Xử lí trang
+     * */
+
+    $isUpdatePayment = false;
+    if(isset($_POST['savePayment'])){
+        $sql = "UPDATE `ho_so` SET `thanh_toan_le_phi`= 0";
+        mysqli_query($conn, $sql);
+
+        $listHSPayment = $_POST['id_ho_so_payment'];
+        if($listHSPayment != []){
+            $listHSPayment = implode(',', $_POST['id_ho_so_payment']);
+            $sql = "UPDATE `ho_so` SET `thanh_toan_le_phi`= 1 WHERE id_ho_so IN ($listHSPayment)";
+            mysqli_query($conn, $sql);
+        }
+        $isUpdatePayment = true;
+     }
+
+
+
 	function getListTS($mon_filter='')
     {
         GLOBAL $conn;

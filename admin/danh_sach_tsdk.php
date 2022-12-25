@@ -42,28 +42,7 @@
          <!-- ============================================================== -->
         <!-- navbar -->
         <!-- ============================================================== -->
-         <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.php">QLTS</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"><i class="fas fas fa-th"></i></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/avatar-1.png" alt="" class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">Username</h5>
-                                    <span class="status"></span><span class="ml-2">Hoạt động</span>
-                                </div>
-                                <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
+         <?php require_once 'header.php'; ?>
         <!-- ============================================================== -->
         <!-- end navbar -->
         <!-- ============================================================== -->
@@ -94,70 +73,78 @@
                         <div class="card">
                             <?php $listTS = getListTS($mon_filter); ?>    
                             <h5 class="card-header text-success">Tổng số thí sinh: <?= count($listTS); ?></h5>
-                            <div class="card-body">
-                                <div class="input-group-append be-addon mb-2">
-                                    <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle" aria-expanded="false">Môn chuyên: <?= ($mon_filter=='') ? "Chọn môn" : getTenMon($mon_filter); ?></button>
-                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(801px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                        <?php 
-                                            if($mon_filter!=''){
-                                                echo "<a href='danh_sach_tsdk.php' class='dropdown-item'>Tất cả</a>";
-                                            }                                                
-                                        ?>
-                                                
-                                        <?php 
-                                            foreach ($listMonChuyen as $mon) {
-                                                if($mon['id_mon']==$mon_filter){continue;}
+                            <form method="post">
+                                <div class="card-body">
+                                    <?php if($isUpdatePayment){
+                                        echo '<div class="alert alert-success" role="alert">
+                                                    <p>Thay đổi trạng thái thanh toán thành công!</p>
+                                                </div>';
+                                    } ?>
+                                    <div class="input-group-append be-addon mb-2">
+                                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle" aria-expanded="false">Môn chuyên: <?= ($mon_filter=='') ? "Chọn môn" : getTenMon($mon_filter); ?></button>
+                                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(801px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            <?php 
+                                                if($mon_filter!=''){
+                                                    echo "<a href='danh_sach_tsdk.php' class='dropdown-item'>Tất cả</a>";
+                                                }                                                
                                             ?>
-                                                    <a href="danh_sach_tsdk.php?mon=<?= $mon['id_mon'] ?>" class="dropdown-item"><?= $mon['ten_mon'] ?></a>
-                                            <?php } ?>
+                                                    
+                                            <?php 
+                                                foreach ($listMonChuyen as $mon) {
+                                                    if($mon['id_mon']==$mon_filter){continue;}
+                                                ?>
+                                                        <a href="danh_sach_tsdk.php?mon=<?= $mon['id_mon'] ?>" class="dropdown-item"><?= $mon['ten_mon'] ?></a>
+                                                <?php } ?>
+                                        </div>
+                                        <button type="submit" name='savePayment' class="btn btn-success ml-auto">Lưu trạng thái thanh toán</button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered first">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 10px;" title="Số thứ tự">STT</th>
+                                                    <th style="width: 100px;">Họ và tên</th>
+                                                    <th style="width: 55px;">Ngày sinh</th>
+                                                    <th>Dân tộc</th>
+                                                    <th>Hộ khẩu</th>
+                                                    <th>Nơi sinh</th>
+                                                    <th>Giới tính</th>
+                                                    <th>Trường THCS</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Ảnh</th>
+                                                    <th style="width: 20px;">Môn thi chuyên</th>
+                                                    <th style="width: 55px;">Đã thanh toán</th>
+                                                    <th style="width: 55px;">Ngày đăng kí</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                    $stt = 0;
+                                                    foreach ($listTS as $thiSinh) {
+                                                ?>      
+                                                <tr>
+                                                    <td><?php echo ++$stt; ?></td>
+                                                    <td><?= $thiSinh['ten'] ?></td>
+                                                    <td><?= $thiSinh['ngay_sinh'] ?></td>
+                                                    <td><?= $thiSinh['dan_toc'] ?></td>
+                                                    <td><?= $thiSinh['ho_khau'] ?></td>
+                                                    <td><?= $thiSinh['noi_sinh'] ?></td>
+                                                    <td><?= $thiSinh['gioi_tinh'] ?></td>
+                                                    <td><?= $thiSinh['truong_thcs'] ?></td>
+                                                    <td><?= $thiSinh['phone'] ?></td>
+                                                    <td><img style="max-width: 100px;"  src="<?= '../Images/'.$thiSinh['anh'] ?>"></td>
+                                                    <td><?= $thiSinh['ten_mon'] ?></td>
+                                                    <td><input style="height: 25px;" type="checkbox" class="form-control" name="id_ho_so_payment[]" value="<?= $thiSinh['id_ho_so'] ?>" <?= ($thiSinh['thanh_toan_le_phi']==1) ? 'checked' : '' ?>></td>
+                                                    <td><?= $thiSinh['ngay_dk'] ?></td>
+                                                </tr>
+                                                <?php
+                                                    }
+                                                 ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 10px;" title="Số thứ tự">STT</th>
-                                                <th style="width: 100px;">Họ và tên</th>
-                                                <th style="width: 55px;">Ngày sinh</th>
-                                                <th>Dân tộc</th>
-                                                <th>Hộ khẩu</th>
-                                                <th>Nơi sinh</th>
-                                                <th>Giới tính</th>
-                                                <th>Trường THCS</th>
-                                                <th>Số điện thoại</th>
-                                                <th>Ảnh</th>
-                                                <th style="width: 20px;">Môn thi chuyên</th>
-                                                <th style="width: 55px;">Trạng thái thanh toán</th>
-                                                <th style="width: 55px;">Ngày đăng kí</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php 
-                                                $stt = 0;
-                                                foreach ($listTS as $thiSinh) {
-                                            ?>      
-                                            <tr>
-                                                <td><?php echo ++$stt; ?></td>
-                                                <td><?= $thiSinh['ten'] ?></td>
-                                                <td><?= $thiSinh['ngay_sinh'] ?></td>
-                                                <td><?= $thiSinh['dan_toc'] ?></td>
-                                                <td><?= $thiSinh['ho_khau'] ?></td>
-                                                <td><?= $thiSinh['noi_sinh'] ?></td>
-                                                <td><?= $thiSinh['gioi_tinh'] ?></td>
-                                                <td><?= $thiSinh['truong_thcs'] ?></td>
-                                                <td><?= $thiSinh['phone'] ?></td>
-                                                <td>Ảnh</td>
-                                                <td><?= $thiSinh['ten_mon'] ?></td>
-                                                <td><?= $thiSinh['thanh_toan_le_phi']==1 ? "Đã thanh toán" : "Chưa thanh toán"  ?></td>
-                                                <td><?= $thiSinh['ngay_dk'] ?></td>
-                                            </tr>
-                                            <?php
-                                                }
-                                             ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <!-- ============================================================== -->
