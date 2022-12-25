@@ -122,7 +122,7 @@ include "../connectdb.php";
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                         <td class="head-ngay">
-                                            <span id="ctl00_MenuVi1_LabelHotline">Thứ Tư, ngày 30 tháng 11 năm 2022</span>
+                                            <span id="ctl00_MenuVi1_LabelHotline" style="color: white;">Thứ Hai, ngày 26 tháng 12 năm 2022</span>
                                         </td>
                                         <td style="text-align: right; width: 204px;">
                                             <input name="ctl00$MenuVi1$TextBoxSearch" type="text" value="Từ khóa..." id="ctl00_MenuVi1_TextBoxSearch" class="text-search" onfocus="if (this.value==&#39;Từ khóa...&#39;) this.value=&#39;&#39;;" onblur="if (this.value==&#39;&#39;) this.value=&#39;Từ khóa...&#39;;" />
@@ -291,14 +291,6 @@ include "../connectdb.php";
                 <td class="menu-f">
                 <span id="ctl00_LabelMenuFoot"><div id="ddtopmenubar" class="mattblackmenu2">
 <ul>
-<li class="End"><a href="/" title="Trang chủ">Trang chủ</a></li>
-<li><a href="/gioi-thieu_g0.aspx" title="Giới thiệu">Giới thiệu</a></li>
-<li><a href="/lich-tuan.aspx" title="Lịch tuần">Lịch tuần</a></li>
-<li><a href="/tai-lieu.aspx" title="Tài liệu tham khảo">Tài liệu tham khảo</a></li>
-<li><a href="/thoi-khoa-bieu.aspx" title="Thời khóa biểu">Thời khóa biểu</a></li>
-<li><a href="/phong-thi.aspx" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
-<li><a href="/diem-thi.aspx" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
-<li><a href="/lien-he.aspx" title="Liên hệ">Liên hệ</a></li>
 <ul></div>
 </span>
                 </td>
