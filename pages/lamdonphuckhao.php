@@ -6,6 +6,7 @@ include "../connectdb.php";
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="../js/swfobject.js"></script>
     <script type="text/javascript" src="../Slide/jquery-1.6.4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/default.css" />
     <link rel="stylesheet" type="text/css" href="../menu/ddlevelsfiles/ddlevelsmenu-base.css" />
     <link rel="stylesheet" type="text/css" href="../menu/ddlevelsfiles/ddlevelsmenu-topbar.css" />
@@ -142,7 +143,37 @@ include "../connectdb.php";
             </tr>
             <tr>
                 <td style="background:#ffffff; padding-top:4px; padding-bottom:4px;" valign="top">
-
+                    <form action="#" style="width: 600px" class="border-2 m-auto p-2" method="post"
+                                              enctype="multipart/form-data">
+                        <h5>Đơn phúc khảo</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Số báo danh</label>
+                            <input type="text" class="form-control" id="sbd" name="sbd" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="hoten" name="hoten" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ngày sinh</label>
+                            <input type="date" class="form-control" id="birth" name="birth" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input type="phone" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <select class="form-select"  id="cars" name="mon">
+                              <option value="toan">Toán</option>
+                              <option value="van">Văn</option>
+                              <option value="chuyen" selected>Môn chuyên</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <button name="gui" class="btn btn-primary">Gửi</button>
+                        </div>
+                    </form>
                     <table border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="body-main" valign="top">
@@ -154,42 +185,12 @@ include "../connectdb.php";
                                     <tr>
                                         <form method="post" action="">
                                             <td class="bg-t3">
-                                            <a>Đơn phúc khảo</a>
+                                            <a></a>
                                         </td>
                                         </form>
                                       
                                     </tr>
                                 </table>
-                                <style>
-                                        .bang
-                                        {
-                                          text-align: left;
-                                        }
-                                        </style>
-                                <table style="border:1px solid black;">
-                                     <form method="post" action="">
-                                             <tr>
-                                        <th class="bang">Số báo danh<input type="text" name="sbd"></th>
-                                    </tr>
-                                    <tr>
-                                        <th class="bang" >Họ và tên<input type="text"name="hoten"></th>
-                                    </tr>
-                                     <tr>
-                                        <th class="bang">Ngày sinh<input type="date" name="birth"></th>
-                                    </tr>
-                                    <tr>
-                                        <th class="bang" >Số điện thoại<input type="text" name="phone"></th>
-                                    </tr>
-                                    <tr>
-                                        <th class="bang" >Môn phúc khảo<select id="cars" name="mon">
-                                          <option value="toan">Toán</option>
-                                          <option value="van">Văn</option>
-                                          <option value="chuyen" selected>Môn chuyên</option>
-                                        </select></th>
-                                    </tr>                             
-                                </table>
-                          <input type="submit" value="Nộp đơn" name="gui">
-                                    </form>
                             </td>
                         </tr>
                         <?php
@@ -260,7 +261,7 @@ include "../connectdb.php";
                                                 $sql = "INSERT INTO don_phuc_khao VALUES('$sbd','$id_phong','$hoten','$idmon','$diemhientai',0);";
                                                  if ($conn->query($sql) === TRUE) 
                                                  {?>
-                                              <b style="color: green;"> <?php echo "Đăng ký phúc khảo thành công<br> Nhà trường đã chấp nhận đơn phúc khảo của thí sinh: ".$hoten." có số báo danh: ".$sbd; ?></b>
+                                              <b  style="color: green;"> <?php echo "Đăng ký phúc khảo thành công<br> Nhà trường đã chấp nhận đơn phúc khảo của thí sinh: ".$hoten." có số báo danh: ".$sbd; ?></b>
                                                   <?php } 
                                                 else {
                                                   echo "Error: " . $sql . "<br>" . $conn->error;
@@ -283,7 +284,6 @@ include "../connectdb.php";
                                 }
                             }
                         ?>
-                    </table>
 
                 </td>
             </tr>
