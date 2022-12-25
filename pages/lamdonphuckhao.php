@@ -91,7 +91,7 @@ include "../connectdb.php";
 </ul>
 
 
-<li><a rel="ddsubmenu3" href="/thong-bao.aspx" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a></li>
+<li><a rel="ddsubmenu3" href="#" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a></li>
 <li><a rel="ddsubmenu2" href="/thu-vien.aspx" title="Thư viện">Thư viện</a></li>
 <li class="End"><a href="/lien-he.aspx" title="Liên hệ">Liên hệ</a></li>
 <ul></div>
@@ -107,9 +107,12 @@ include "../connectdb.php";
 </div>
 <div id="ddsubmenu3" class="ddsubmenustyle">
 <li><a href="/thoi-khoa-bieu.aspx" title="Thời khóa biểu học sinh">Thời khóa biểu học sinh</a></li>
-<li><a href="/thong-bao.aspx" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
-<li><a href="/phong-thi.aspx" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
-<li><a href="/diem-thi.aspx" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+<li><a href="content.php" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
+<li><a href="tracuuphongthi.php" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
+<li><a href="tracuudiemthi.php" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+<li><a href="lamdonphuckhao.php" title="Thanh toán lệ phí">Phúc khảo</a></li>
+<li><a href="form_sign.php" title="Form đăng ký ">Đăng ký dự thi </a></li>
+<li><a href="payment.php" title="Thanh toán lệ phí">Thanh toán lệ phí</a></li>
 </div>
 </span>
                                 <script type="text/javascript">

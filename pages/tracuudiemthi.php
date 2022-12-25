@@ -88,7 +88,7 @@ include "../connectdb.php";
 </ul>
 
 
-<li><a rel="ddsubmenu3" href="/thong-bao.aspx" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a></li>
+<li><a rel="ddsubmenu3" href="#" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a></li>
 <li><a rel="ddsubmenu2" href="/thu-vien.aspx" title="Thư viện">Thư viện</a></li>
 <li class="End"><a href="/lien-he.aspx" title="Liên hệ">Liên hệ</a></li>
 <ul></div>
@@ -104,9 +104,12 @@ include "../connectdb.php";
 </div>
 <div id="ddsubmenu3" class="ddsubmenustyle">
 <li><a href="/thoi-khoa-bieu.aspx" title="Thời khóa biểu học sinh">Thời khóa biểu học sinh</a></li>
-<li><a href="/thong-bao.aspx" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
-<li><a href="/phong-thi.aspx" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
-<li><a href="/diem-thi.aspx" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+<li><a href="content.php" title="Thông tin tuyển sinh">Thông tin tuyển sinh</a></li>
+<li><a href="tracuuphongthi.php" title="Tra cứu phòng thi">Tra cứu phòng thi</a></li>
+<li><a href="tracuudiemthi.php" title="Tra cứu điểm thi">Tra cứu điểm thi</a></li>
+<li><a href="lamdonphuckhao.php" title="Thanh toán lệ phí">Phúc khảo</a></li>
+<li><a href="form_sign.php" title="Form đăng ký ">Đăng ký dự thi </a></li>
+<li><a href="payment.php" title="Thanh toán lệ phí">Thanh toán lệ phí</a></li>
 </div>
 </span>
                                 <script type="text/javascript">
@@ -139,7 +142,7 @@ include "../connectdb.php";
                 </td>
             </tr>
             <tr>
-                <td style="background:#ffffff; padding-top:4px; padding-bottom:4px;" valign="top">
+                <td style="background:#ffffff; padding-top:15px; padding-bottom:15px; padding-left:3%" valign="top">
 
                     <table border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
@@ -152,7 +155,7 @@ include "../connectdb.php";
                                     <tr>
                                         <form method="post" action="">
                                             <td class="bg-t3">
-                                            <a>Số báo danh</a><input type="text" name="sbd">
+                                            <a>Số báo danh</a> <input type="text" name="sbd">
                                             <input type="submit" value="Tra cứu" name="gui">
                                         </td>
                                         </form>
@@ -169,6 +172,43 @@ include "../connectdb.php";
                                 <table style="width:30%;border:1px solid black; margin-top:10px">
                            
                                 <?php
+
+                                    function getDiemTruocPhucKhao($mon, $sbd){
+                                        GLOBAL $conn;
+                                        $diem = '';
+                                        $sql = "SELECT diem_hien_tai from don_phuc_khao where id_mon = '$mon' and sbd = '$sbd'";
+                                        $diem = mysqli_fetch_assoc(mysqli_query($conn, $sql))['diem_hien_tai'] ?? "";
+                                        return $diem;
+                                    }
+
+                                    function getListTSTrungTuyen($mon, $chi_tieu){
+                                        GLOBAL $conn;
+                                        $sql_select_id_hoc_sinh_by_mon = "SELECT id_hoc_sinh FROM hoc_sinh INNER JOIN ho_so ON hoc_sinh.id_ho_so=ho_so.id_ho_so WHERE ho_so.mon_thi_chuyen='$mon'";
+                                        $sql = "SELECT sbd, (diem_toan+diem_van+(diem_chuyen*2)) AS 'TongDiem' FROM diem WHERE sbd IN ($sql_select_id_hoc_sinh_by_mon) ORDER BY `TongDiem` DESC LIMIT $chi_tieu";
+                                        $result = mysqli_query($conn, $sql);
+                                        $listTS = [];
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $listTS[$row['sbd']]['tong_diem'] = $row['TongDiem'];
+                                        }
+                                        return $listTS;
+                                    }
+
+                                    function getKetQuaTrungTuyen($sbd){
+                                        GLOBAL $conn;
+                                        $sql = "SELECT mon_thi_chuyen FROM ho_so INNER JOIN hoc_sinh ON ho_so.id_ho_so=hoc_sinh.id_ho_so WHERE hoc_sinh.id_hoc_sinh='$sbd'";
+                                        $monchuyen = mysqli_fetch_assoc(mysqli_query($conn, $sql))['mon_thi_chuyen'];
+                                        $listSBDTrungTuyen = array_keys(getListTSTrungTuyen($monchuyen, 5));
+                                        return in_array($sbd, $listSBDTrungTuyen);
+                                    }
+
+                                    function getMonChuyen($sbd){
+                                        GLOBAL $conn;
+                                        $sql = "SELECT mon_thi_chuyen FROM ho_so INNER JOIN hoc_sinh ON ho_so.id_ho_so=hoc_sinh.id_ho_so WHERE hoc_sinh.id_hoc_sinh='$sbd'";
+                                        $monchuyen = mysqli_fetch_assoc(mysqli_query($conn, $sql))['mon_thi_chuyen'];
+                                        return $monchuyen;
+                                    }
+
+
                                     function getTenMon($id_Phong)
                                     {
                                         GLOBAL $conn;
@@ -208,14 +248,71 @@ include "../connectdb.php";
                                        <th class="bang">Số điện thoại:<a style=" color: blue;"> <?php echo $row['phone']; ?></a></th>
                                     </tr>
                                     <tr>
-                                        <th class="bang">Văn: <a style=" color: blue;"><?php echo $row['diem_van']; ?></a></th>
+                                        <th class="bang">Văn: <a style=" color: blue;"><?= getDiemTruocPhucKhao(2 ,$row['id_hoc_sinh']) == '' ? $row['diem_van'] : getDiemTruocPhucKhao(2 ,$row['id_hoc_sinh']); ?></a></th>
                                     </tr>
                                        <tr>
-                                       <th class="bang">Toán: <a style=" color: blue;"><?php echo $row['diem_toan']; ?></a></th>
-                                    </tr>                                   
+                                       <th class="bang">Toán: <a style=" color: blue;"><?= getDiemTruocPhucKhao(1 ,$row['id_hoc_sinh']) == '' ? $row['diem_toan'] : getDiemTruocPhucKhao(1 ,$row['id_hoc_sinh']); ?></a></th>
                                      </tr>
-                                        <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?> :<a style=" color: blue;"><?php echo $row['diem_chuyen']; ?></a> </th>
+                                        <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?>: <a style=" color: blue;"><?= getDiemTruocPhucKhao(getMonChuyen($row['id_hoc_sinh']), $row['id_hoc_sinh']) == '' ? $row['diem_van'] : getDiemTruocPhucKhao(getMonChuyen($row['id_hoc_sinh']), $row['id_hoc_sinh']); ?></a> </th>
                                     </tr>
+                                    </tr>
+                                    <?php
+                                        function getDonPhucKhao($sbd)
+                                         {
+                                             GLOBAL $conn;
+                                             $sql = "SELECT * FROM don_phuc_khao WHERE sbd = '$sbd' and trang_thai=1";
+                                             $result = mysqli_query($conn, $sql);
+                                             $listDonPK = [];
+                                             if(mysqli_num_rows($result) > 0) {
+                                                while($row = mysqli_fetch_assoc($result)){
+                                                    $listDonPK[] = $row['id_mon'];
+                                                }
+                                             }
+                                            return $listDonPK;
+                                         } 
+
+                                        $listDonPK = getDonPhucKhao($row['id_hoc_sinh']);
+                                        if($listDonPK != []){
+                                            ?>
+                                            <tr>
+                                               <th class="bang"><a style=" color: blue;">Kết quả phúc khảo: </a></th>
+                                             </tr> 
+                                             <?php if(in_array(1, $listDonPK)){
+                                                ?>
+                                                <tr>
+                                               <th class="bang">Toán: <a style=" color: blue;"> <?php echo $row['diem_toan']; ?></a></th>
+                                             </tr>
+
+                                                <?php 
+                                             } ?>
+
+                                             <?php if(in_array(2, $listDonPK)){
+                                                ?>
+                                                <tr>
+                                               <th class="bang">Văn: <a style=" color: blue;"><?php echo $row['diem_van']; ?> </a></th>
+                                             </tr> 
+
+                                                <?php 
+                                             } ?>
+
+                                              <?php if(in_array(getMonChuyen($row['id_hoc_sinh']), $listDonPK)){
+                                                ?>
+                                                <tr>
+                                               <th class="bang"><?php echo getTenMon($row['id_phong_thi_chuyen']);?>: <a style=" color: blue;"><?php echo $row['diem_chuyen']; ?></a> </th>
+                                             </tr>
+
+                                                <?php 
+                                             } ?>
+                                              
+
+                                        <?php
+                                        }
+
+                                     ?> 
+                                    
+                                     <tr>
+                                       <th class="bang">Kết quả xét tuyển: <a style=" color: red; font-weight: bold;"><?= getKetQuaTrungTuyen($row['id_hoc_sinh']) ? "Trúng tuyển" : "Trượt"; ?></a></th>
+                                    </tr>                                 
                                                     <?php 
                                             }
                                         }
