@@ -1,7 +1,23 @@
 <?php
 	include_once "cong_dk_functions.php";
 	include_once 'danh_sach_tsdk_functions.php'; 
+	include_once 'libs/xlsxwriter.class.php'; 
 	
+	/**
+	 * Setlocale UTF8 For sort vietnamese string
+	 * */
+	setlocale(LC_COLLATE, 'de_DE.UTF8', 'de.UTF8', 'de_DE.UTF-8', 'de.UTF-8');
+
+	/**
+	 * Get param url
+	 * */
+	$mon_filter = '';
+    if(isset($_GET['mon'])){
+        if(getTenMon($_GET['mon'])!=''){
+            $mon_filter = $_GET['mon'];
+        }
+    }
+
 	/**
 	 * Xử lí trang
 	 * */	
@@ -20,6 +36,9 @@
 	        // Lấy tất cả danh sách hồ sơ đã thanh toán được sort theo mon_thi_chuyen
 	        $listHoSo = getListHoSo();
 
+	        // Sort danh sách thứ tự họ tên theo alphabet 
+        	uasort($listHoSo, 'sortFullNameVietnamese');
+
 	        // Lấy ra danh sách phòng thi toán chung
 	        $listPhongToan = getlistPhongToan();
 	    
@@ -34,20 +53,71 @@
 	        // Lấy ra danh sách phong thi cho tất cả môn chuyên
 	        $listPhongThiChuyen = getListPhongThiChuyen();
 
+	        // Lấy danh sách sort theo môn chuyên
+	        $listHoSoXepChuyen = getListHoSo();
+
+	        // Sắp xếp phòng thi chuyên cho từng id_ho_so
+	        $listHoSoPhongChuyen = sapXepPhongThiChuyen($listHoSoXepChuyen, $listPhongThiChuyen, $so_luong_mot_phong);
 	        
-	        // Sắp xếp phòng thi chuyên
-	        $listHoSo = sapXepPhongThiChuyen($listHoSo, $listPhongThiChuyen, $so_luong_mot_phong);
-	        
+	        // Merge danh sách phòng chuyên theo id_ho_so vừa tạo vào danh sách chính
+	        $listHoSo = mergeDanhSachPhongChuyen($listHoSo, $listHoSoPhongChuyen);
 	        
 	        // Cất dữ liệu thông tin danh sách phòng thi 
 	        $listHoSo = insertSapXepDanhSachPhongThi($listHoSo);
+
+	        // Insert danh sách điểm chờ cập nhật
 	        insertDanhSachDiem($listHoSo);
 	        $trangThaiSapXepPhong = true;
 	        $msg_SapXep = true;
 	    }
 	}
 
-	
+	if(isset($_POST['btnExcel'])){
+		$id_phong = $_POST['idPhong'];
+
+		$listTSPhongThi = getListTSPhongThi($id_phong, $mon_filter);
+
+		$tenPhong = $listTSPhongThi[$id_phong][0]['ten_phong'];
+		$loai_mon = ($mon_filter==1 || $mon_filter==2) ? " chung" : " chuyên";
+		$tenMon = getTenMon($mon_filter).$loai_mon;
+		$thoigian = str_replace(':', '-', $listTSPhongThi['thoi_gian_thi']);
+
+
+		$filename = "Phòng $tenPhong - $tenMon - $thoigian.xlsx";
+		header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
+		header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		header('Content-Transfer-Encoding: binary');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+
+		$rows = [];		
+		foreach ($listTSPhongThi[$id_phong] as $key => $thiSinh) {
+			$rows[] = [
+				$thiSinh['id_hoc_sinh'],
+				$thiSinh['ten'],
+				$thiSinh['gioi_tinh'],
+				$thiSinh['ngay_sinh'],
+				$thiSinh['phone']
+			];
+		}
+
+		$header = array(
+		  'Số báo danh'=>'string',
+		  'Họ và tên'=>'string',
+		  'Giới tính'=>'string',
+		  'Ngày sinh'=>'date',
+		  'Số điện thoại'=>'string',
+		  'Điểm'=>'string'
+		);
+
+		$writer = new XLSXWriter();
+		$writer->setAuthor('Admin_QLTS'); 
+		$writer->writeSheetHeader('Sheet1', $header);
+		foreach($rows as $row)
+			$writer->writeSheetRow('Sheet1', $row);
+		$writer->writeToStdOut();
+		
+	}
 
 
 
@@ -80,7 +150,7 @@
 
 	function getListHoSo(){
 		GLOBAL $conn;
-		$sql = "SELECT * FROM ho_so WHERE thanh_toan_le_phi = 1 ORDER BY mon_thi_chuyen ASC";
+		$sql = "SELECT * FROM ho_so WHERE thanh_toan_le_phi = 1 ORDER BY mon_thi_chuyen ASC, ten ASC";
         $result = mysqli_query($conn, $sql);
         $listHoSo = [];
         while ($row = mysqli_fetch_assoc($result)) {
@@ -141,17 +211,19 @@
 	{
 		$count_thi_sinh_1Phong = 1;
 		$old_id_mon_chuyen = '';
+		$listHoSoPhongChuyen = [];
         foreach ($listHoSo as $key => $hoSo) {
             $id_mon_chuyen = $hoSo['mon_thi_chuyen'];
             if(($count_thi_sinh_1Phong > $so_luong_mot_phong) || ($old_id_mon_chuyen!='' && $old_id_mon_chuyen!=$id_mon_chuyen)){
                 $count_thi_sinh_1Phong = 1;
                 array_shift($listPhongThiChuyen[$id_mon_chuyen]);
             }
-            $listHoSo[$key]['id_phong_thi_chuyen'] = $listPhongThiChuyen[$id_mon_chuyen][0];
+            $id_ho_so = $hoSo['id_ho_so'];
+            $listHoSoPhongChuyen[$id_ho_so] = $listPhongThiChuyen[$id_mon_chuyen][0];
             $count_thi_sinh_1Phong++;
 			$old_id_mon_chuyen = $id_mon_chuyen;
         }
-        return $listHoSo;
+        return $listHoSoPhongChuyen;
 	}
 
 	function insertSapXepDanhSachPhongThi($listHoSo){
@@ -206,7 +278,6 @@
         $fieldNameInnerJoinsSQL = $fieldNameInnerJoinDB[$mon_filter] ?? "id_phong_thi_chuyen";
         $sql = "SELECT * FROM hoc_sinh INNER JOIN phong_thi ON hoc_sinh.$fieldNameInnerJoinsSQL=phong_thi.id_phong_thi WHERE phong_thi.id_mon = '$mon_filter'";
         $result = mysqli_query($conn, $sql);
-
         $listPhongThi = [];
         while($row = mysqli_fetch_assoc($result)){
             $id_phong = $row['id_phong'];
@@ -216,7 +287,8 @@
                 'phone' => $row['phone'],
                 'ngay_sinh' => $row['ngay_sinh'],
                 'gioi_tinh' => $row['gioi_tinh'],
-                'ten_phong' => $row['ten_phong']
+                'ten_phong' => $row['ten_phong'],
+                'id_phong_thi' => $row['id_phong_thi']
             ];
         }
         return $listPhongThi;
@@ -232,4 +304,58 @@
         }
 	}
 
+
+	function sortFullNameVietnamese($a, $b) {
+		// Get fullName
+		$a = $a['ten'];
+		$b = $b['ten'];
+
+	    // Get LastName
+	    $lastNamea = substr($a, strrpos($a, ' ')+1);
+	    $lastNameb = substr($b, strrpos($b, ' ')+1);
+	    
+	    // Get FirstName
+	    $firstNamea = substr($a, 0, strrpos($a, ' '));
+	    $firstNameb = substr($b, 0, strrpos($b, ' '));
+	    
+	    // Compare
+	    $cmpLastName = strcoll($lastNamea, $lastNameb);
+	    return $cmpLastName==0 ? strcoll($firstNamea, $firstNameb) : $cmpLastName;
+	}
+
+	function mergeDanhSachPhongChuyen($listHoSo, $listHoSoPhongChuyen){
+		foreach ($listHoSo as $key => $hoSo) {
+        	$id_ho_so = $hoSo['id_ho_so'];
+        	$listHoSo[$key]['id_phong_thi_chuyen'] = $listHoSoPhongChuyen[$id_ho_so];
+        }
+        return $listHoSo;
+	}
+
+	function getListTSPhongThi($id_phong, $mon_filter)
+	{
+		GLOBAL $conn;
+		$fieldNameInnerJoinDB = [
+            1 => 'id_phong_thi_toan', 
+            2 => 'id_phong_thi_van' 
+        ];
+        $fieldNameInnerJoinsSQL = $fieldNameInnerJoinDB[$mon_filter] ?? "id_phong_thi_chuyen";
+        $sql = "SELECT * FROM hoc_sinh INNER JOIN phong_thi ON hoc_sinh.$fieldNameInnerJoinsSQL=phong_thi.id_phong_thi WHERE phong_thi.id_mon = '$mon_filter' AND phong_thi.id_phong='$id_phong' ORDER BY `hoc_sinh`.`id_hoc_sinh` ASC";
+        $result = mysqli_query($conn, $sql);
+        $listPhongThi = [];
+        $thoi_gian_thi = '';
+        while($row = mysqli_fetch_assoc($result)){
+            $id_phong = $row['id_phong'];
+            $listPhongThi[$id_phong][] = [
+                'id_hoc_sinh' => $row['id_hoc_sinh'],
+                'ten' => $row['ten'],
+                'phone' => $row['phone'],
+                'ngay_sinh' => $row['ngay_sinh'],
+                'gioi_tinh' => $row['gioi_tinh'],
+                'ten_phong' => $row['ten_phong']
+            ];
+            $thoi_gian_thi = $row['thoi_gian_thi'];
+        }
+        $listPhongThi['thoi_gian_thi'] = $thoi_gian_thi;
+        return $listPhongThi;
+	}
  ?>

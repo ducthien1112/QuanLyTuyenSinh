@@ -11,7 +11,7 @@
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="<?php echo (in_array($page, ["index", "danh_sach_tsdk"])) ? "true" : ""; ?>" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Quản lí chung<span class="badge badge-success">6</span></a>
-                        <div id="submenu-1" class="collapse submenu <?php echo (in_array($page, ["index", "danh_sach_tsdk", "danh_sach_phong_thi", "ql_diem"])) ? "show" : ""; ?>" style="">
+                        <div id="submenu-1" class="collapse submenu <?php echo (in_array($page, ["index", "danh_sach_tsdk", "danh_sach_phong_thi", "ql_diem", "ql_phuc_khao", "danh_sach_thi_sinh_trung_tuyen"])) ? "show" : ""; ?>" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link <?php echo ($page=="index") ? "active" : ""; ?>" href="index.php">Cổng đăng kí</a>
@@ -25,15 +25,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link <?php echo ($page=="ql_diem") ? "active" : ""; ?>" href="ql_diem.php">Quản lí điểm thi</a>
                                 </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
-                        <div id="submenu-2" class="collapse submenu" style="">
-                            <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
+                                    <a class="nav-link <?php echo ($page=="ql_phuc_khao") ? "active" : ""; ?>" href="ql_phuc_khao.php">Quản lí phúc khảo (<?= getAllSLPhucKhaoDangCho() ?>)</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo ($page=="danh_sach_thi_sinh_trung_tuyen") ? "active" : ""; ?>" href="danh_sach_thi_sinh_trung_tuyen.php">Danh sách trúng tuyển</a>
                                 </li>
                             </ul>
                         </div>

@@ -1,9 +1,9 @@
 <?php 
     include_once '../connectdb.php'; 
     include_once 'danh_sach_phong_thi_functions.php'; 
-    include_once 'ql_diem_functions.php'; 
+    include_once 'ql_diem_functions.php';
     include_once 'ql_phuc_khao_functions.php';
-    $page = "ql_diem";
+    $page = "ql_phuc_khao";
 ?>
 <!doctype html>
 <html lang="en">
@@ -12,7 +12,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Quản lí điểm thi</title>
+    <title>Quản lí phúc khảo</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
@@ -72,7 +72,7 @@
                 <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Quản lí điểm thi</h2>
+                                <h2 class="pageheader-title">Quản lí phúc khảo</h2>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                                         <?= ($mon_filter=='') ? "Chọn môn" : getTenMon($mon_filter); ?>
                                         <?= ($mon_filter == 1 || $mon_filter == 2) ? ' chung' 
                                         : (($mon_filter=='') ? " " 
-                                        : " chuyên") ?>
+                                        : " chuyên")  ?> (Số đơn PK: <?= getSLPhucKhao($mon_filter) ?>)
                                     </button>
                                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(801px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                                         <?php
@@ -96,7 +96,7 @@
                                             foreach ($listMon as $mon) {
                                                 if($mon['id_mon']==$mon_filter){continue;}
                                             ?>
-                                                    <a href="ql_diem.php?mon=<?= $mon['id_mon'] ?>" class="dropdown-item"><?= $mon['ten_mon'] ?><?= ($mon['loai_mon']=='chung') ? ' chung' : ' chuyên' ?></a>
+                                                    <a href="ql_phuc_khao.php?mon=<?= $mon['id_mon'] ?>" class="dropdown-item"><?= $mon['ten_mon'] ?><?= ($mon['loai_mon']=='chung') ? ' chung' : ' chuyên' ?> (Số đơn PK: <?= getSLPhucKhao($mon['id_mon']) ?>)</a>
                                             <?php } ?>
                                     </div>
                                 </div>
@@ -109,6 +109,16 @@
                                             </div>
                                         </div> ';
                                     }
+                                    else{
+                                        echo '<div class="card-body border-top">
+                                            <h4>Thông báo!</h4>
+                                            <div class="alert alert-info" role="alert">
+                                                <p>Số đơn phúc khảo đang chờ: '.getSLPhucKhaoDangCho($mon_filter).'</p>
+                                            </div>
+                                        </div> ';
+                                    }
+
+
                                  ?>
                             </div>
                         </div>
@@ -116,7 +126,7 @@
 
 
                     <?php
-                        $listPhongThi = getListPhongThi($mon_filter);
+                        $listPhongThi = getListPhongThiPhucKhao($mon_filter);
 
                         if($mon_filter != '' && $trangThaiSapXepPhong==true){
                      ?>
@@ -158,6 +168,8 @@
                                                             $diem = round($diem, 2);
                                                         }
                                                         $sql = "UPDATE `diem` SET `$fieldName`=$diem WHERE `sbd`='$sbd'";
+                                                        mysqli_query($conn, $sql);
+                                                        $sql = "UPDATE `don_phuc_khao` SET `trang_thai`=1 WHERE `sbd`='$sbd' AND id_mon='$mon_filter'";
                                                         mysqli_query($conn, $sql);
                                                     }
                                                     echo '<div class="alert alert-success" role="alert">
@@ -201,7 +213,6 @@
                                                             <form method="post"> 
                                                                 <input type="submit" name="btnSaveScore" class="btn btn-primary mb-3 float-right" value="Lưu điểm">
                                                                 <input type="hidden" name="idPhongUpdateScore" value="'.$key.'">
-                                                                <input type="button" id="btnSaveScoreExcel" class="btn btn-primary mb-3 mr-3 float-right" value="Nhập điểm Excel" data-id_phong_thi="'.$phongThi[0]['id_phong_thi'].'" data-id_phong_update_score="'.$key.'">
                                                                 <div class="table-responsive">
                                                                     <table class="table table-striped table-bordered first">
                                                                         <thead>
@@ -211,20 +222,25 @@
                                                                                 <th>Ngày sinh</th>
                                                                                 <th>Giới tính</th>
                                                                                 <th>Số điện thoại</th>
-                                                                                <th>Điểm</th>
+                                                                                <th style="width: 85px;">Trạng thái phúc khảo</th>
+                                                                                <th>Điểm trước phúc khảo</th>
+                                                                                <th>Điểm sau phúc khảo</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>';
                                                                             foreach ($phongThi as $key => $thiSinh) {
-                                                                                $scoreInDB = getScore($mon_filter, $thiSinh['id_hoc_sinh']);
+                                                                                $scoreTruocPK = getDiemTruocPk($thiSinh['id_hoc_sinh'], $thiSinh['id_phong_thi']);
+                                                                                $scoreSauPK = (getTrangThaiPk($thiSinh['id_hoc_sinh'], $thiSinh['id_phong_thi'])) ? getScore($mon_filter, $thiSinh['id_hoc_sinh']) : "";
                                                                                 echo '<tr>
                                                                                         <td><input type="hidden" name="sbd[]" value="'.$thiSinh['id_hoc_sinh'].'">'.$thiSinh['id_hoc_sinh'].'</td>
                                                                                         <td>'.$thiSinh['ten'].'</td>
                                                                                         <td>'.$thiSinh['ngay_sinh'].'</td>
                                                                                         <td>'.$thiSinh['gioi_tinh'].'</td>
                                                                                         <td>'.$thiSinh['phone'].'</td>
+                                                                                        <td>'.displayTrangThaiPK($thiSinh).'</td>
                                                                                         <td>'.
-                                                                                        '<input class="ip-float-number" type="text" name="score[]" style="width: 100px;" value="'.$scoreInDB.'">'.'</td>
+                                                                                        '<input type="text" name="score_old" style="width: 100px;" value="'.$scoreTruocPK.'" disabled>'.'</td>
+                                                                                         <td><input class="ip-float-number" type="text" name="score[]" style="width: 100px;" value="'.$scoreSauPK.'"></td>
                                                                                     </tr>';
                                                                             }
                                                                     echo '</tbody>
@@ -235,7 +251,14 @@
                                                         $activeFirstElm = '';
                                                         $activePhongThiLastUpdate = '';
                                             }
+
+                                            if($listPhongThi==[]){
+                                                echo '<div class="alert alert-danger" role="alert">
+                                                        <p>Không tìm thấy đơn phúc khảo của môn thi này!</p>
+                                                    </div>';
+                                            } 
                                              ?>
+                                            
                                     </div>
                                         </form>
                                 </div>
@@ -273,29 +296,6 @@
             <!-- ============================================================== -->
             <!-- end footer -->
             <!-- ============================================================== -->
-            <div class="modal fade" id="excel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Chọn file nhập điểm Excel</h5>
-                            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </a>
-                        </div>
-                        <form method="post" id="excelform" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                    <input type="file" class="form-control" name="excelIp" required>
-                                    <input type="hidden" name="idPhongUpdateScore" id="idPhongUpdateScore" value="">
-                                    <input type="hidden" name="idPhongThi" id="idPhongThi" value="">
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#" class="btn btn-secondary" data-dismiss="modal">Đóng</a>
-                                <input type="submit" class="btn btn-primary" name="excelSave" id="excelSave" value="Nhập">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -332,15 +332,7 @@
 
 
 
-            $(document).on("click", "#btnSaveScoreExcel", function() {
-                let idPhongThi = $(this).data('id_phong_thi');
-                $("#idPhongThi").val(idPhongThi);
-
-                let idPhongUpdateScore = $(this).data('id_phong_update_score');
-                $("#idPhongUpdateScore").val(idPhongUpdateScore);
-
-                $("#excel").modal("show");
-            });
+            
         });
     </script>
 </body>
