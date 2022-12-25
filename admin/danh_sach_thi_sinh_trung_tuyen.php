@@ -94,6 +94,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 10px;" title="Số thứ tự">STT</th>
+                                                <th style="width: 100px;">Số báo danh</th>
                                                 <th style="width: 100px;">Họ và tên</th>
                                                 <th style="width: 55px;">Ngày sinh</th>
                                                 <th>Giới tính</th>
@@ -106,10 +107,11 @@
                                                 $listTS = getListTSTrungTuyen($mon_filter, 5);
                                                 $listTS = getinfoListTSTrungTuyen($listTS);
                                                 $stt = 0;
-                                                foreach ($listTS as $thiSinh) {
+                                                foreach ($listTS as $key => $thiSinh) {
                                             ?>      
                                             <tr>
                                                 <td><?php echo ++$stt; ?></td>
+                                                <td><?= $thiSinh['sbd'] ?></td>
                                                 <td><?= $thiSinh['ten'] ?></td>
                                                 <td><?= $thiSinh['ngay_sinh'] ?></td>
                                                 <td><?= $thiSinh['gioi_tinh'] ?></td>
@@ -125,10 +127,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    
-
                     <!-- ============================================================== -->
                     <!-- end basic table  -->
                     <!-- ============================================================== -->
@@ -151,29 +149,6 @@
             <!-- ============================================================== -->
             <!-- end footer -->
             <!-- ============================================================== -->
-            <div class="modal fade" id="excel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Chọn file nhập điểm Excel</h5>
-                            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </a>
-                        </div>
-                        <form method="post" id="excelform" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                    <input type="file" class="form-control" name="excelIp" required>
-                                    <input type="hidden" name="idPhongUpdateScore" id="idPhongUpdateScore" value="">
-                                    <input type="hidden" name="idPhongThi" id="idPhongThi" value="">
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#" class="btn btn-secondary" data-dismiss="modal">Đóng</a>
-                                <input type="submit" class="btn btn-primary" name="excelSave" id="excelSave" value="Nhập">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- ============================================================== -->
