@@ -1,6 +1,7 @@
 <?php 
     include_once '../connectdb.php'; 
-    include_once 'danh_sach_tsdk_functions.php'; 
+    include_once 'danh_sach_tsdk_functions.php';
+    include_once 'ql_phuc_khao_functions.php'; 
     $page = "danh_sach_tsdk";
 
     $mon_filter = '';

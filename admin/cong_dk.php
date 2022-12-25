@@ -1,6 +1,7 @@
 ﻿<?php 
     include_once '../connectdb.php'; 
     include_once "cong_dk_functions.php";
+    include_once 'ql_phuc_khao_functions.php';
     $page = "index";
 ?>
 <!doctype html>
@@ -176,7 +177,7 @@
                             <!-- ============================================================== -->
                             <!-- Đăng kí  -->
                             <!-- ============================================================== -->
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-inline-block">
@@ -195,7 +196,7 @@
                             <!-- ============================================================== -->
                             <!-- new thanh toán  -->
                             <!-- ============================================================== -->
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-inline-block">
@@ -210,44 +211,6 @@
                             </div>
                             <!-- ============================================================== -->
                             <!-- end đã thanh toán  -->
-                            <!-- ============================================================== -->
-                            <!-- ============================================================== -->
-                            <!-- chờ điểm  -->
-                            <!-- ============================================================== -->
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-inline-block">
-                                            <h5 class="text-muted">Số thí sinh chờ điểm</h5>
-                                            <h2 class="mb-0"> 10,28,056</h2>
-                                        </div>
-                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
-                                            <i class="fa fa-eye fa-fw fa-sm text-info"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ============================================================== -->
-                            <!-- end chờ điểm  -->
-                            <!-- ============================================================== -->
-                            <!-- ============================================================== -->
-                            <!-- Phúc khảo  -->
-                            <!-- ============================================================== -->
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-inline-block">
-                                            <h5 class="text-muted">Số thí sinh phúc khảo</h5>
-                                            <h2 class="mb-0"> 10,28,056</h2>
-                                        </div>
-                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
-                                            <i class="fa fa-eye fa-fw fa-sm text-info"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ============================================================== -->
-                            <!-- end phúc khảo  -->
                             <!-- ============================================================== -->
                         </div>
                     </div>
