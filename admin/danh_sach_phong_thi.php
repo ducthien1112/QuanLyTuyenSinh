@@ -173,7 +173,7 @@
                                                                             echo '<tr>
                                                                                     <td>'.$thiSinh['id_hoc_sinh'].'</td>
                                                                                     <td>'.$thiSinh['ten'].'</td>
-                                                                                    <td>'.$thiSinh['ngay_sinh'].'</td>
+                                                                                    <td>'.date("d-m-Y", strtotime($thiSinh['ngay_sinh'])).'</td>
                                                                                     <td>'.$thiSinh['gioi_tinh'].'</td>
                                                                                     <td>'.$thiSinh['phone'].'</td>
                                                                                 </tr>';

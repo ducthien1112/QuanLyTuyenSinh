@@ -199,7 +199,7 @@
                                                                                 echo '<tr>
                                                                                         <td><input type="hidden" name="sbd[]" value="'.$thiSinh['id_hoc_sinh'].'">'.$thiSinh['id_hoc_sinh'].'</td>
                                                                                         <td>'.$thiSinh['ten'].'</td>
-                                                                                        <td>'.$thiSinh['ngay_sinh'].'</td>
+                                                                                        <td>'.date("d-m-Y", strtotime($thiSinh['ngay_sinh'])).'</td>
                                                                                         <td>'.$thiSinh['gioi_tinh'].'</td>
                                                                                         <td>'.$thiSinh['phone'].'</td>
                                                                                         <td>'.

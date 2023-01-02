@@ -113,7 +113,7 @@
                                                 <td><?php echo ++$stt; ?></td>
                                                 <td><?= $thiSinh['sbd'] ?></td>
                                                 <td><?= $thiSinh['ten'] ?></td>
-                                                <td><?= $thiSinh['ngay_sinh'] ?></td>
+                                                <td><?= date("d-m-Y", strtotime($thiSinh['ngay_sinh'])) ?></td>
                                                 <td><?= $thiSinh['gioi_tinh'] ?></td>
                                                 <td><?= $thiSinh['phone'] ?></td>
                                                 <td><?= $thiSinh['tong_diem'] ?></td>

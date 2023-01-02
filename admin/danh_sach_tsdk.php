@@ -125,7 +125,7 @@
                                                 <tr>
                                                     <td><?php echo ++$stt; ?></td>
                                                     <td><?= $thiSinh['ten'] ?></td>
-                                                    <td><?= $thiSinh['ngay_sinh'] ?></td>
+                                                    <td><?= date("d-m-Y", strtotime($thiSinh['ngay_sinh'])) ?></td>
                                                     <td><?= $thiSinh['dan_toc'] ?></td>
                                                     <td><?= $thiSinh['ho_khau'] ?></td>
                                                     <td><?= $thiSinh['noi_sinh'] ?></td>
